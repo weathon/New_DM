@@ -2,23 +2,35 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Weathon文档管理系统</title>
-  <link rel="stylesheet" href="./src/layui/css/layui.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Weathon文档管理系统</title>
+	<link rel="stylesheet" href="./src/layui/css/layui.css">
 </head>
 
 <body class="layui-layout-body">
-  <div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-      <div class="layui-logo">Weathon文档管理系统</div>
-      <!-- 头部区域（可配合l ayui已有的水平导航） -->
-      <ul class="layui-nav layui-layout-left">
-        <li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./manger.html');">文档管理</a></li>
-        <li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./setting.html');">设置</a></li>
-        <li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./search.html');">文档查找</a></li>
-        <li class="layui-nav-item">
-          <!--
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<div class="layui-logo">Weathon文档管理系统</div>
+			<!-- 头部区域（可配合l ayui已有的水平导航） -->
+			<ul class="layui-nav layui-layout-left">
+				<li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./manger.html');">文档管理</a></li>
+				<li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./setting.html');">设置</a></li>
+				<li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./search.html');">文档查找</a></li>
+
+
+				<!-- Menu -->
+  <li class="layui-nav-item">
+    <a href="javascript:;">导入</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">从扫描仪</a></dd>
+      <dd><a href="">从文件</a></dd>
+    </dl>
+  </li>
+
+				<!-- Menu End -->
+				<li class="layui-nav-item">
+					<!--
             <a href="javascript:;">其它系统</a>
             <dl class="layui-nav-child">
               <dd><a href="">邮件管理</a></dd>
@@ -26,12 +38,12 @@
               <dd><a href="">授权管理</a></dd>
             </dl>
 -->
-        </li>
-      </ul>
-      <ul class="layui-nav layui-layout-right">
-        <li class="layui-nav-item">
-          <a href="javascript:;">
-              <img src="cat.png" class="layui-nav-img">
+				</li>
+			</ul>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item">
+					<a href="javascript:;">
+						<img src="cat.png" class="layui-nav-img">
               管理员
             </a>
           <dl class="layui-nav-child">
@@ -48,11 +60,11 @@
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
         <ul class="layui-nav layui-nav-tree" lay-filter="test">
           <li class="layui-nav-item layui-nav-itemed">
-            <a class="" href="javascript:;">所有文档</a>
+            <a class="" href="javascript:;">文件夹1</a>
             <dl class="layui-nav-child">
-              <dd><a href="javascript:layui.$('#myframe').attr('src','./manger.html');">文档库</a></dd>
-              <dd><a href="javascript:layui.$('#myframe').attr('src','./scan.html');">从扫描仪添加文档</a></dd>
-              <dd><a href="javascript:layui.$('#myframe').attr('src','./upload.html');">从文件添加文档</a></dd>
+              <dd><a href="javascript:layui.$('#myframe').attr('src','./manger.html');">文档1</a></dd>
+              <dd><a href="javascript:layui.$('#myframe').attr('src','./scan.html');">文档2</a></dd>
+              <dd><a href="javascript:layui.$('#myframe').attr('src','./upload.html');">文档3</a></dd>
               <!--                <dd><a href="">超链接</a></dd>-->
             </dl>
           </li>
@@ -67,7 +79,7 @@
             </li>
 -->
           <!--            <li class="layui-nav-item"><a href="">云市场</a></li>-->
-          <li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./search.html');" id="expert" name="expert">文档搜索</a></li>
+          <li class="layui-nav-item"><a href="javascript:layui.$('#myframe').attr('src','./search.html');" id="expert" name="expert">文件夹2</a></li>
         </ul>
       </div>
     </div>
