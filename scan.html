@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>高级操作</title>
+    <link rel="stylesheet" href="./src/layui/css/layui.css">
+  </head>
+  <body>
+ <div class="layui-main">
+   
+ <object classid="clsid:15D142CD-E529-4B01-9D62-22C9A6C00E9B"	id="scaner1" name="scaner1" width="100%" height="600"	codebase="<%=app_url%>/static/cabs/ScanOnWeb.cab#version=1,0,0,10">
+    Error
+  </object>
+   <a href="javascriptt:testscan();">aaaaa</a>
+   </div>
+    <script src='./src/layui/layui.js'></script>
+    <script>
+      //一般直接写在一个js文件中
+      layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+       ,form = layui.form;
+//
+       layer.msg('Hello World');
+      });
+      
+    </script> 
+    <script type='text/javascript'> 
+function testscan(){
+document.getElementById('scaner1').scan();
+}
+</script>
+  </body>
+</html>
