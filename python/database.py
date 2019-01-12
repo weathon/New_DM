@@ -9,9 +9,10 @@ def set(ip,user,psd,database_name):
     f.close()
     return 0
   except:
-    return 
+    return -1 
 
 def connect():
+
   conn = pymssql.connect(host='127.0.0.1',
                         user='',
                         password='123',
