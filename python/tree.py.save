@@ -1,26 +1,20 @@
 # #coding:utf-8
-import database
+
 import os
 # f=open("../config.inf")
 def mkdir(path):
     folder = os.path.exists(path)
-    if not folder:            
+    if not folder:
         os.makedirs(path)
         return 0
-    else:
-        return -1
+    els:
+	return -1
 
-
-def add(father,name,dir_or_file):#Dir_or_file:if it is '1', it means user want to mk a dir, or means user want to mk a file
-    if dir_or_file=="1":#dir
-        mkdir("./tree"+father+"/"+name)
+def add(father,name,dir_or_file):
+    if dir_or_file==1:#dir
+        mkdir(father+name)
     else:#file
-        f=open(father+"/"+name,"w")
-        f.write(dir_or_file)#form name
-        #mk form, write latter
-        database.kmform(name=dir_or_file)
-        f.close()
-        
+        pass
 
   
 
