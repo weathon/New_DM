@@ -67,7 +67,13 @@ class myHandler(BaseHTTPRequestHandler):
                         self.send_header('Content-type',"application/json")
                         self.end_headers()
                         self.wfile.write(json.dumps(dict(self.headers)).encode("utf-8"))
-                
+                        #Must encode
+
+                    elif fun=="put":
+                        array=cut[1].split("?")
+                        formname=array[0]
+
+
                     
                 
             return
