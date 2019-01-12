@@ -12,7 +12,7 @@ def set(ip,user,psd,database_name):
     return -1,e 
 
 def connect():
-  f=open("config.inf","rb")
+"""  f=open("config.inf","rb")
   ip,user,psd,database_name=pickle.load(f)
   print(ip,user,psd,database_name)
   f.close()
@@ -21,16 +21,17 @@ def connect():
                         password='123',
                         database='SQLTest',
                         charset='utf8')
-  return conn
-  u""" 
-#查看连接是否成功
+  #return conn
+ 
   cursor = conn.cursor()
   sql = 'select * from student'
   cursor.execute(sql)
-  #用一个rs变量获取数据
-  rs = cursor.fetchall()
+    rs = cursor.fetchall()
 
   print(rs)
 """
+def SQL(sql,database_object):
+
+    
 if __name__=="__main__":
   print(eval(input()))
