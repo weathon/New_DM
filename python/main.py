@@ -6,6 +6,7 @@ import sys
 import json
 import database2 as database
 
+
 PORT_NUMBER = 8080
 cur_dir = '../'
  
@@ -15,6 +16,7 @@ class myHandler(BaseHTTPRequestHandler):
  
     #Handler for the GET requests
     def do_GET(self):
+        print(self.path)
         run=False
         if self.path=="/":
             self.path="/index.html"
