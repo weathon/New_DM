@@ -29,24 +29,28 @@ class myHandler(BaseHTTPRequestHandler):
             if self.path.endswith(".html"):
                 mimetype='text/html'
                 sendReply = True
-            if self.path.endswith(".jpg"):
+            elif self.path.endswith(".jpg"):
                 mimetype='image/jpg'
                 sendReply = True
-            if self.path.endswith(".gif"):
+            elif self.path.endswith(".gif"):
                 mimetype='image/gif'
                 sendReply = True
-            if self.path.endswith(".js"):
+            elif self.path.endswith(".js"):
                 mimetype='application/javascript'
                 sendReply = True
-            if self.path.endswith(".css"):
+            elif self.path.endswith(".css"):
                 mimetype='text/css'
                 sendReply = True
-            if self.path.endswith(".png"):
+            elif self.path.endswith(".png"):
                 mimetype="image/png"
                 sendReply=True
-            if "?" in self.path or self.path.endswith(".py"):
+            elif "?" in self.path or self.path.endswith(".py"):
                 run=True
+            elif self.path.endswith(".json"):
+                mimetype="application/json"
+                sendReply=True
 
+                
             if sendReply == True:
                 #Open the static file requested and send it
                 f = open(cur_dir + self.path,"rb")

@@ -1,5 +1,5 @@
 # #coding:utf-8
-import database
+import database2
 import os
 # f=open("../config.inf")
 def mkdir(path):
@@ -10,7 +10,7 @@ def mkdir(path):
     else:
         return -1
 
-
+#Too many jumper, I am crazy!!!!
 def add(father,name,dir_or_file):#Dir_or_file:if it is '1', it means user want to mk a dir, or means user want to mk a file
     if dir_or_file=="1":#dir
         mkdir("./tree"+father+"/"+name)
@@ -18,6 +18,7 @@ def add(father,name,dir_or_file):#Dir_or_file:if it is '1', it means user want t
         f=open(father+"/"+name,"w")
         f.write(dir_or_file)#form name
         #mk form, write latter
+        database2.runsql("create table "+name+" (id varchar(20) primary key, name varchar(20))")
         database.kmform(name=dir_or_file)
         f.close()
         
