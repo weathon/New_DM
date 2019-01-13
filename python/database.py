@@ -1,18 +1,9 @@
 #coding:utf-8
-import pymssql
+#import pymssql
+import sqlite3
 import pickle
-def set(ip,user,psd,database_name):
-  try:
-    f=open("config.inf","wb")
-    config=[ip,user,psd,database_name]
-    pickle.dump(config,f)
-    f.close()
-    return 0
-  except e:
-    return -1,e 
-
-def connect():
-"""  f=open("config.inf","rb")
+"""def connect():
+  f=open("config.inf","rb")
   ip,user,psd,database_name=pickle.load(f)
   print(ip,user,psd,database_name)
   f.close()
@@ -30,8 +21,19 @@ def connect():
 
   print(rs)
 """
-def SQL(sql,database_object):
+def runsql(database_name,sql):
 
-    
+  conn = sqlite3.connect(database_name+".db")
+  cursor = conn.cursor()
+  cursor.execute(sql)
+  # 关闭Cursor:
+  cursor.close()
+  # 提交事务:
+  conn.commit()
+  # 关闭Connection:
+  conn.close()
+
+
+
 if __name__=="__main__":
   print(eval(input()))
