@@ -1,3 +1,3 @@
 git add .
-git commit －m daily
+git commit
 git push
