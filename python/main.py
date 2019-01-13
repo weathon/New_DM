@@ -60,7 +60,7 @@ class myHandler(BaseHTTPRequestHandler):
 
                     cut=self.path.split("?")
                     fun=cut[0].lstrip("/")
-                    if fun == "getform":
+                    if fun == "headers":
                         array=cut[1].split('?')
                         formname=array[0]
                         self.send_response(200)
