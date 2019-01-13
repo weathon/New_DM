@@ -4,6 +4,7 @@
 from http.server import BaseHTTPRequestHandler,HTTPServer
 import sys
 import json
+import database2 as database
 
 PORT_NUMBER = 8080
 cur_dir = '../'
@@ -69,9 +70,17 @@ class myHandler(BaseHTTPRequestHandler):
                         self.wfile.write(json.dumps(dict(self.headers)).encode("utf-8"))
                         #Must encode
 
-                    elif fun=="put":
-                        array=cut[1].split("?")
+                    elif fun=="read":
+                        array=cut[1].split('?')
                         formname=array[0]
+                        self.send_response(200)
+                        self.send_header('Content-type',"application/json")
+                        self.end_headers()
+                        if database.check_dangerous(formname) == False:
+                            self.wfile.write('{"message":u"DNA"}'.encode("utf-8"))
+                        else:
+                            self.wfile.write(json.dumps(database.runsql("select * from "+formname)).encode("utf-8"))
+                        #Must encode
 
 
                     
