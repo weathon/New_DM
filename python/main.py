@@ -5,7 +5,7 @@ from http.server import BaseHTTPRequestHandler,HTTPServer
 import sys
 import json
 import database2 as database
-
+import os
 
 PORT_NUMBER = 8080
 cur_dir = '../'
@@ -17,6 +17,12 @@ class myHandler(BaseHTTPRequestHandler):
     #Handler for the GET requests
     def do_GET(self):
         print(self.path)
+        try:
+            self.ar=self.path.split("?")[1]
+        except:
+            pass
+        self.path=self.path.split("?")[0]
+
         run=False
         if self.path=="/":
             self.path="/index.html"
@@ -25,7 +31,7 @@ class myHandler(BaseHTTPRequestHandler):
             #Check the file extension required and
             #set the right mime type
  
-            sendReply = False
+            sendReply = False 
             if self.path.endswith(".html"):
                 mimetype='text/html'
                 sendReply = True
@@ -44,14 +50,22 @@ class myHandler(BaseHTTPRequestHandler):
             elif self.path.endswith(".png"):
                 mimetype="image/png"
                 sendReply=True
-            elif "?" in self.path or self.path.endswith(".py"):
+            elif self.path.endswith(".py"):
                 run=True
             elif self.path.endswith(".json"):
                 mimetype="application/json"
                 sendReply=True
+            elif self.path.endswith(".ico"):
+                mimetype="image/x-icon"
+                sendReply=True
+            else:
+                sendReply=True
+                mimetype="application/octet-stream"
 
+           # print(self.path.split("?")[0].endswith(".json"))
                 
             if sendReply == True:
+                
                 #Open the static file requested and send it
                 f = open(cur_dir + self.path,"rb")
                 self.send_response(200)
@@ -60,13 +74,16 @@ class myHandler(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
                 f.close()
             elif run:
+                #print(self.path)
                 if self.path=="/logout.py":
-                   server.socket.close()
-                   sys.exit()
+                   self.send_response(200)
+                   self.send_header('Content-typr',"text/html")
+                   self.end_headers()
+                   self.wfile.write("<script>window.close()</script><h1>You have been logout! If this window still open, you can close it by yourself!</h1>".encode('utf-8'))
+                   os._exit(0)
                 else:
 
-                    cut=self.path.split("?")
-                    fun=cut[0].lstrip("/")
+                    fun=self.path.lstrip("/")
                     if fun == "headers":
                         array=cut[1].split('?')
                         formname=array[0]
