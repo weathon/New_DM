@@ -37,7 +37,19 @@ def read(path):
   return result
 """
 #Now I want to use an spicel tree, think from Nodejs, Search one times, and then use link.
-#And python3.4 ave a pkg named pathlib
+
+def read(path,depth):
+    files=os.listdir(path)
+    for i in files:
+        if os.path.isdir(i):
+            print(" "*depth+"|-"+i)
+            print("hhhhhhhhhhhhh"+i)
+            read(i,depth+1)
+        else:
+            print(" "*depth+"|-"+i)
+
+
 
 if __name__=="__main__":
+    read("../",0)
     print(eval(input()))
