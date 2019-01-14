@@ -1,4 +1,4 @@
-# #coding:utf-8
+#coding:utf-8
 import database2
 import os
 # f=open("../config.inf")
@@ -22,7 +22,7 @@ def add(father,name,dir_or_file):#Dir_or_file:if it is '1', it means user want t
         database.kmform(name=dir_or_file)
         f.close()
         
-
+"""
   
 
 def read(path):
@@ -35,6 +35,9 @@ def read(path):
     else:
       result.append(["dir",i])
   return result
+"""
+#Now I want to use an spicel tree, think from Nodejs, Search one times, and then use link.
+#And python3.4 ave a pkg named pathlib
 
 if __name__=="__main__":
     print(eval(input()))
