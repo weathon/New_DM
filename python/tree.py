@@ -37,17 +37,15 @@ def read(path):
   return result
 """
 #Now I want to use an spicel tree, think from Nodejs, Search one times, and then use link.
-
+#Can we use collections.defaultdict to make a tree but use dir?
 def read(path,depth):
     files=os.listdir(path)
     for i in files:
         if os.path.isdir(i):
             print(" "*depth+"|-"+i)
-            print("hhhhhhhhhhhhh"+i)
             read(i,depth+1)
         else:
             print(" "*depth+"|-"+i)
-
 
 
 if __name__=="__main__":
