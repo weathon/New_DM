@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 
@@ -32,14 +33,7 @@
 
 				<!-- Menu End -->
 				<li class="layui-nav-item">
-					<!--
-            <a href="javascript:;">其它系统</a>
-            <dl class="layui-nav-child">
-              <dd><a href="">邮件管理</a></dd>
-              <dd><a href="">消息管理</a></dd>
-              <dd><a href="">授权管理</a></dd>
-            </dl>
--->
+
 				</li>
 			</ul>
 			<ul class="layui-nav layui-layout-right">
@@ -56,33 +50,37 @@
 
 
   </div>
-   <object classid="clsid:15D142CD-E529-4B01-9D62-22C9A6C00E9B"	id="scaner1" name="scaner1" width="100%" height="600"	codebase="<%=app_url%>/static/cabs/ScanOnWeb.cab#version=1,0,0,10">
-   
-  </object>
-   <ul id="demoTree" class="dtree" data-id="0"></ul>
+  <ul id="demo"></ul>
   <script src='./src/layui/layui.js'></script>
   <script>
+alert(0);
     //JavaScript代码区域
-    layui.use('element', function() {
-      var element = layui.element;
+layui.use(['tree', 'layer'], function(){
+	alert();
+	  var layer = layui.layer;
+	 layui.tree({
+		   elem: '#demo' //传入元素选择器
+			     ,nodes: [{ //节点
+				         name: '父节点1'
+						     ,children: [{
+							           name: '子节点11'
+									       },{
+										             name: '子节点12'
+												         }]
+					   },{
+						       name: '父节点2（可以点左侧箭头，也可以双击标题）'
+							           ,children: [{
+									         name: '子节点21'
+											       ,children: [{
+												               name: '子节点211'
+														             }]
+										     }]
+						         }]
+	 });
 
-    });
-
-var DemoTree = dtree.render({
-	  elem: "#demoTree",
-	    data: demoTree,
-	      type: "all",
-	        initLevel: "1"
-});
-dtree.on("node('demoTree')" ,function(obj){
-	  layer.msg(JSON.stringify(obj.param));
-});
+})
   </script>
-      <script type='text/javascript'> 
-function testscan(){
-document.getElementById('scaner1').scan();
-}
-</script>
+
 </body>
 
-</html>
+
