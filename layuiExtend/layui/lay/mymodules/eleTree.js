@@ -198,6 +198,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 dataName: "data"
             },
             request: {
+                _data: "data",
                 name: "label",
                 key: "id",
                 children: "children",
