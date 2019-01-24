@@ -614,6 +614,7 @@ var el6=eleTree.render({
                 console.log(this);          // 与d.node相同
                 // d.stop();                // 取消编辑
                 console.groupEnd();      
+                alert(str(d));
             })
             eleTree.on("nodeRemove(data3)",function(d) {
                 console.group("删除nodeRemove:")
