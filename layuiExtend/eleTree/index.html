@@ -384,7 +384,7 @@ var el=eleTree.render({
 > el.updateKeyChildren(key,data) // 更新子节点
 > el.updateKeySelf(key,data) //更新当前节点
 > el.getChecked(leafOnly, includeHalfChecked)   // 获取选中的节点，接收两个 boolean 类型的参数，1. 是否只是叶子节点，默认值为 false 2. 是否包含半选节点，默认值为 false
-> el.setChecked(arr) //设置选中的节点，传入数组key值
+> el.setChecked(arr,isReset) //设置选中的节点，传入数组key值，isReset：是否重新设置选中项，默认false，若为false，则在原有的选中基础上增加选中项
 > el.unCheckNodes() //取消所有选中的节点
 > el.expandAll() //展开所有
 > el.unExpandAll() //合并所有
@@ -444,6 +444,7 @@ eleTree.on("nodeAppend(data1)",function(d) {
         key: 666,
         label: "aaa"
     })
+    console.log(d.newData); // 新增加的节点数据
 })
 // 添加节点之前事件
 eleTree.on("nodeInsertBefore(data1)",function(d) {
@@ -455,6 +456,7 @@ eleTree.on("nodeInsertBefore(data1)",function(d) {
         key: 666,
         label: "aaa"
     })
+    console.log(d.newData); // 新增加的节点数据
 })
 // 添加节点之后事件
 eleTree.on("nodeInsertAfter(data1)",function(d) {
@@ -466,6 +468,7 @@ eleTree.on("nodeInsertAfter(data1)",function(d) {
         key: 666,
         label: "aaa"
     })
+    console.log(d.newData); // 新增加的节点数据
 })
 // 节点被编辑事件
 eleTree.on("nodeEdit(data1)",function(d) {
