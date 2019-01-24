@@ -1,4 +1,4 @@
-## 基于layui的tree重写
+## 基于layui的tree重写（Clone from another repo）
 
 
 1. [文档](http://118.178.226.143:9090/urp/layuiExtend/eleTree/)
