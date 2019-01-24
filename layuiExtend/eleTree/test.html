@@ -390,7 +390,6 @@ var el6=eleTree.render({
 
     <script src="../layui/layui.js"></script>
     <script>
-        
         layui.config({
             base: "../layui/lay/mymodules/"
         }).use(['jquery','table','eleTree','code','form','slider'], function(){
@@ -410,6 +409,7 @@ var el6=eleTree.render({
             }
 
             var el1=eleTree.render(obj);
+            console.log(el1.config);
 
             form.on('checkbox(test)', function(data){
                 var title=$(data.elem).attr("title");
