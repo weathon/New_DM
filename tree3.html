@@ -54,8 +54,60 @@
   <!--  <ul id="demo"></ul> -->
 <div class="eleTree ele1"></div>
   <script src='./src/layui/layui.js'></script>
- 
-  <script>
+      <script>
+    layui.config({
+            base: "./src/layui/lay/mymodules/"
+        }).use(['jquery','table','eleTree','code'], function(){
+            var $ = layui.jquery;
+            var eleTree = layui.eleTree;
+            var table = layui.table;
+            var code = layui.code;
+
+            var data=[
+                {
+                    id: 1,
+                    label: "安徽省",
+                    children: [
+                        {
+                            id: 2,
+                            label: "马鞍山市",
+                            disabled: true,
+                            children: [
+                                {
+                                    id: 3,
+                                    label: "和县",
+                                },
+                                {
+                                    id: 4,
+                                    label: "花山区",
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    label: "河南省",
+                    children: [
+                        {
+                            id: 6,
+                            label: "郑州市"
+                        }
+                    ]
+                }
+            ]
+            
+            eleTree.render({
+                elem: '.ele1',
+                data: data,
+                showCheckbox: true,
+            });
+//           layui.code({elem: ".pre1",about: true,title: "对应的代码",encode: true});
+//             layui.code({elem: ".req1",about: true,title: "code",encode: true}); 
+      //I don't know what is this for 
+            
+        });
+    </script>
 
   </script>
 
