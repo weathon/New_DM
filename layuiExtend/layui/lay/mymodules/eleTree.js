@@ -84,7 +84,11 @@ layui.define(["jquery","laytpl"], function (exports) {
             },
             search: function(value) {
                 return _self.search.call(_self,value);
-            }
+            },
+            datas: function(){
+                return _self.whole();
+            },
+            //See commit
         }
     }
 
@@ -198,6 +202,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 dataName: "data"
             },
             request: {
+          
                 name: "label",
                 key: "id",
                 children: "children",
@@ -1030,6 +1035,11 @@ layui.define(["jquery","laytpl"], function (exports) {
                     _self.checkboxInit();
                 })
             })
+        },
+        whole: function(){
+            //Return a whole tree
+            return this.config.data;
+            //What is *this*
         },
         rightClickMenu: function() {
             var _self=this;
