@@ -10,3 +10,4 @@
 
 # https://gitlab.gnome.org/World/OpenPaperwork/paperwork   
 哈哈哈哈，半夜笑出声，太兴奋了，早就知道有这种类似的软件，谢谢作者，太兴奋了（但这等于我自己的工作白费？没用？值得吗？协议？ **这个可以做单文件的浏览，文件以pdf储存！**）
+突然发现关键词因改为 image scanner，但又不想重新搜索？上次树也是一样
