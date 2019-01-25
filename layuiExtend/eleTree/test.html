@@ -411,7 +411,7 @@ var el6=eleTree.render({
             var el1=eleTree.render(obj);
 //             console.log(el1.config);
 //           alert();  When run the code below, the tree is not be loaded yet.
-            tree=el1;
+            tree=el1;//其实添加后可以看到，但是用复选框选择后会出现问题
             form.on('checkbox(test)', function(data){
                 var title=$(data.elem).attr("title");
                 var isChecked=data.elem.checked;
@@ -625,7 +625,7 @@ var el6=eleTree.render({
                 console.groupEnd();      
             })
             
-            
+//             tree3=el3;新问题：动态添加后节点信息无法获取
             var el4=eleTree.render({
                 elem: '.ele4',
                 data: [
@@ -724,7 +724,8 @@ var el6=eleTree.render({
                 }
             });
 //               alert(el6.datas());//I am using ipad so i have no console
-          alert();
+//           alert();
+//           Tree done !!!! you need to return the "el1" and wait it be load, and you can not return just datas
          
         });
     </script>
