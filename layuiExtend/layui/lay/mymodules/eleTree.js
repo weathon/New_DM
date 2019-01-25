@@ -1039,6 +1039,7 @@ layui.define(["jquery","laytpl"], function (exports) {
         whole: function(){
             //Return a whole tree
             return this.config.data;
+            //What is *this*
         },
         rightClickMenu: function() {
             var _self=this;
