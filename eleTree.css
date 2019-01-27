@@ -25,7 +25,7 @@
 }
 .eleTree-node-content:hover,
 .eleTree-node-content.eleTree-node-content-active{
-    background-color: #eee;
+    background-color: #000;
 }
 .eleTree-node-content-icon .layui-icon{
     padding: 6px 3px;
