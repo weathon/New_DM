@@ -97,10 +97,12 @@
                 }
             ]
             
-            eleTree.render({
+            tree1=eleTree.render({
                 elem: '.ele1',
                 data: data,
-                showCheckbox: true,
+//                 showCheckbox: true,
+              contextmenuList: 	["copy","add","edit","remove"],
+              draggable:true,
             });
 //           layui.code({elem: ".pre1",about: true,title: "对应的代码",encode: true});
 //             layui.code({elem: ".req1",about: true,title: "code",encode: true}); 
@@ -110,7 +112,8 @@
     </script>
 
   </script>
-
+    <button onclick="console.log(tree1.datas().data)">Show data</button>
+    </button>
 </body>
 
-
+  </html>
