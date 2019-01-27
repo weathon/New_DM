@@ -13,3 +13,6 @@
 突然发现关键词因改为 image scanner，但又不想重新搜索？上次树也是一样
 https://github.com/openpaperwork
 但是还是界面不太好看，只用扫描和整理？
+
+pdf.js can be used
+here is one of them https://www.pdftron.com/webviewer/demo
