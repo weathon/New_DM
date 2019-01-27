@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Weathon文档管理系统 | 文档查看</title>
 	<link rel="stylesheet" href="./src/layui/css/layui.css">
+    <link rel="stylesheet" href="eleTree.css" media="all">
 </head>
 
 
@@ -56,37 +57,64 @@
 
 
   </div>
+<div class="layui-side layui-bg-black">
+  <div class="eleTree ele1"></div>
+  </div>
+ <script src='./src/layui/layui.js'></script>
+      <script>
+    layui.config({
+            base: "./src/layui/lay/mymodules/"
+        }).use(['jquery','table','eleTree','code'], function(){
+            var $ = layui.jquery;
+            var eleTree = layui.eleTree;
+            var table = layui.table;
+            var code = layui.code;
 
-
-<table class="layui-table" lay-data="{height:315, url:'demo.js', page:true, id:'test'}" lay-filter="test">
-  <thead>
-    <tr>
-      <th lay-data="{field:'id', width:80, sort: true}">ID</th>
-      <th lay-data="{field:'username', width:80}">用户名</th>
-      <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
-      <th lay-data="{field:'city'}">城市</th>
-      <th lay-data="{field:'sign'}">签名</th>
-      <th lay-data="{field:'experience', sort: true}">积分</th>
-      <th lay-data="{field:'score', sort: true}">评分</th>
-      <th lay-data="{field:'classify'}">职业</th>
-      <th lay-data="{field:'wealth', sort: true}">财富</th>
-    </tr>
-  </thead>
-</table>
-		
-    <script src='./src/layui/layui.js'></script>
-    <script>
-      //一般直接写在一个js文件中
-      layui.use(['layer', 'form'], function() {
-        var layer = layui.layer
-               ,form = layui.form;
-        //
-        //        layer.msg('Hello World');
-
-        
-      });
-         
+            var data=[
+                {
+                    id: 1,
+                    label: "安徽省",
+                    children: [
+                        {
+                            id: 2,
+                            label: "马鞍山市",
+                            disabled: true,
+                            children: [
+                                {
+                                    id: 3,
+                                    label: "和县",
+                                },
+                                {
+                                    id: 4,
+                                    label: "花山区",
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    label: "河南省",
+                    children: [
+                        {
+                            id: 6,
+                            label: "郑州市"
+                        }
+                    ]
+                }
+            ]
+            
+            tree1=eleTree.render({
+                elem: '.ele1',
+                data: data,
+              contextmenuList: 	["copy","add","edit","remove"],
+              draggable:true,
+//               highlightCurrent:true,
+            });
+            
+        });
     </script>
+
 </body>
 
 </html>
