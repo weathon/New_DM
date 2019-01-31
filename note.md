@@ -16,3 +16,6 @@ https://github.com/openpaperwork
 
 pdf.js can be used
 here is one of them https://www.pdftron.com/webviewer/demo
+
+
+Use htmlpy?
