@@ -15,7 +15,7 @@ layui.use('table', function(){
   
   table.render({
     elem: '#test'
-    ,url:'test.json'
+    ,url:'test3.json'
     ,toolbar: true
     ,title: '用户数据表'
     ,totalRow: true
@@ -30,7 +30,7 @@ layui.use('table', function(){
       ,{field:'city', title:'城市', width:100}
       ,{field:'ip', title:'IP', width:120}
     ]]
-    ,page: false
+    ,page: true
     ,response: {
       statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
     }
@@ -38,8 +38,8 @@ layui.use('table', function(){
       return {
         "code": 200, //解析接口状态
         "msg": "", //解析提示文本
-        "count": 5, //解析数据长度
-        "data": res //解析数据列表
+        "count": 8, //解析数据长度
+        "data": res.rows.item //解析数据列表
       };
     }
   });

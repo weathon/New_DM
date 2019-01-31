@@ -1,53 +1,19 @@
-#coding:utf-8
-import database2
-import os
-# f=open("../config.inf")
-def mkdir(path):
-    folder = os.path.exists(path)
-    if not folder:            
-        os.makedirs(path)
-        return 0
-    else:
-        return -1
-
-#Too many jumper, I am crazy!!!!
-def add(father,name,dir_or_file):#Dir_or_file:if it is '1', it means user want to mk a dir, or means user want to mk a file
-    if dir_or_file=="1":#dir
-        mkdir("./tree"+father+"/"+name)
-    else:#file
-        f=open(father+"/"+name,"w")
-        f.write(dir_or_file)#form name
-        #mk form, write latter
-        database2.runsql("create table "+name+" (id varchar(20) primary key, name varchar(20))")
-        database.kmform(name=dir_or_file)
-        f.close()
-        
-"""
+def write(json_string):
+  try:
+      f=open('tree.json','w')
+      f.write(json_string)
+      f.close()
+      return 0
+  except:
+    return -1
   
-
-def read(path):
-  files= os.listdir(path)#获取所有文件和文件夹
-  # print files
-  result=[]
-  for i in files:
-    if os.path.isdir(i):#如果是文件
-      result.append(["file",i])#后期可能需要优化set而不是list
-    else:
-      result.append(["dir",i])
-  return result
-"""
-#Now I want to use an spicel tree, think from Nodejs, Search one times, and then use link.
-#Can we use collections.defaultdict to make a tree but use dir?
-def read(path,depth):
-    files=os.listdir(path)
-    for i in files:
-        if os.path.isdir(i):
-            print(" "*depth+"|-"+i)
-            read(i,depth+1)
-        else:
-            print(" "*depth+"|-"+i)
-
-
-if __name__=="__main__":
-    read("../",0)
-    print(eval(input()))
+  
+def read():
+  try:
+    f=open('tree.json','r')
+    json_string=f.read()
+    f.close()
+    return json_string
+  except:
+    return -1
+    
