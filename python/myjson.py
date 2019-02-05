@@ -6,7 +6,7 @@ def list2json(lists,keys):
         #lists is a table
         for j in range(lenght):
             #print((i,j))
-            thisline[keys[j]]=lists[i][j]
+            thisline[keys[j]]=i[j]
         result.append(thisline)
     return result
 if __name__=="__main__":
