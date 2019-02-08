@@ -19,3 +19,5 @@ here is one of them https://www.pdftron.com/webviewer/demo
 
 
 Use htmlpy?
+
+WHY I delet files on my computer， then I push it on github it doesn't change？ I'm afraid there are some else problem.
