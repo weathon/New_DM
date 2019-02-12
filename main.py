@@ -1,7 +1,7 @@
 import eel
-eel.init('web')
+eel.init('./')
 eel.start('index.html')
 
 @eel.expose
-def my_python_function(a, b):
+def helloworld(a, b):
     print(a, b, a + b)

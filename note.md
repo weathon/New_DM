@@ -21,3 +21,7 @@ here is one of them https://www.pdftron.com/webviewer/demo
 Use htmlpy?
 
 WHY I delet files on my computer， then I push it on github it doesn't change？ I'm afraid there are some else problem.
+
+warning: LF will be replaced by CRLF in main.py.
+The file will have its original line endings in your working directory
+
