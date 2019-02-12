@@ -60,13 +60,16 @@
 <div class="layui-side layui-bg-black">
   <div class="eleTree ele1"></div>
   <br/><br/>
-	<div>如果你对树状图进行了更改，需要点击<div class="layui-btn layui-btn-xs">此处</div>提交更改</div>
+	<div>点击<div class="layui-btn layui-btn-xs">此处</div>提交更改</div>
   
 
   </div>
  <script src='./src/layui/layui.js'></script>
  <script>
 	function settree(){
+		
+	};
+	function getData(){
 		
 	}
  </script>
@@ -79,39 +82,7 @@
             var table = layui.table;
             var code = layui.code;
 
-            var data=[
-                {
-                    id: 1,
-                    label: "安徽省",
-                    children: [
-                        {
-                            id: 2,
-                            label: "马鞍山市",
-                            disabled: true,
-                            children: [
-                                {
-                                    id: 3,
-                                    label: "和县",
-                                },
-                                {
-                                    id: 4,
-                                    label: "花山区",
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 5,
-                    label: "河南省",
-                    children: [
-                        {
-                            id: 6,
-                            label: "郑州市"
-                        }
-                    ]
-                }
-            ];
+            var data=getData();
             
             tree1=eleTree.render({
                 elem: '.ele1',
@@ -123,7 +94,8 @@
             
         });
     </script>
-
+<!-- If want light, use Eel, if want powerful, use cefpython-->
+			<script type="text/javascript" src="/eel.js"></script>
 </body>
 
 </html>
