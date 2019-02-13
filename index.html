@@ -71,11 +71,13 @@
 	function settree(){
 		
 	};
-	function getData(){
+	async function getData(){
 		
-		return eel.getD()();
+		let returns=await eel.getD()();
+console.log(returns);
+		return returns;
 	}
-console.log(getData());
+
  </script>
       <script>
     layui.config({
