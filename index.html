@@ -68,14 +68,14 @@
   </div>
  <script src='./src/layui/layui.js'></script>
  <script>
+var tree_json={};
 	function settree(){
 		
 	};
 	async function getData(){
 		
 		let returns=await eel.getD()();
-console.log(returns);
-		return returns;
+		tree_json=JSON.parse(returns);
 	}
 
  </script>
@@ -87,8 +87,8 @@ console.log(returns);
             var eleTree = layui.eleTree;
             var table = layui.table;
             var code = layui.code;
-
-            var data=getData();
+            getData();
+            var data=tree_json;
             
             tree1=eleTree.render({
                 elem: '.ele1',
