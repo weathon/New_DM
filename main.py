@@ -18,10 +18,11 @@ def setTree(data):
         f.close()
         # return 0
         returns=0
-    except:
+        # 5/0 Test Error 
+    except Exception as e:
         # return -1
-        returns=-1
-        #Last time
+        # print(repr(e))
+        returns=repr(e)
     return returns
 
 
