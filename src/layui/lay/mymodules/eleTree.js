@@ -1053,11 +1053,12 @@ layui.define(["jquery","laytpl"], function (exports) {
             var menuStr=['<ul id="tree-menu">'
                 ,$.inArray("copy",options.contextmenuList)!==-1?'<li class="copy"><a href="javascript:;">复制</a></li>':''
                 ,$.inArray("add",options.contextmenuList)!==-1?'<li class="add"><a href="javascript:;">新增</a></li>'+
-                    '<li class="insertBefore"><a href="javascript:;">插入节点前</a></li>'+
-                    '<li class="insertAfter"><a href="javascript:;">插入节点后</a></li>'+
-                    '<li class="append"><a href="javascript:;">插入子节点</a></li>' : ""
-                ,$.inArray("edit",options.contextmenuList)!==-1?'<li class="edit"><a href="javascript:;">修改</a></li>':''
+                    '<li class="insertBefore"><a href="javascript:;">插入节点<b>前</b></a></li>'+
+                    '<li class="insertAfter"><a href="javascript:;">插入节点<b>后</b></a></li>'+
+                    '<li class="append"><a href="javascript:;">插入<b>子节点</b></a></li>' : ""
+                ,$.inArray("edit",options.contextmenuList)!==-1?'<li class="edit"><a href="javascript:;">重命名</a></li>':''
                 ,$.inArray("remove",options.contextmenuList)!==-1?'<li class="remove"><a href="javascript:;">删除</a></li>':''
+                //是否需要撤销功能？
             ,'</ul>'].join("");
             this.treeMenu=$(menuStr);
             options.elem.off("contextmenu").on("contextmenu",".eleTree-node-content",function(e) {
@@ -1094,7 +1095,9 @@ layui.define(["jquery","laytpl"], function (exports) {
                     e.stopPropagation();
                     $(this).hide().siblings("li.copy,li.edit,li.remove").hide();
                     $(this).siblings(".append,li.insertAfter,li.insertBefore").show();
+                    
                 })
+
                 // 添加的默认数据
                 var obj={};
                 obj[options.request.key]=_self.addKeyIndex;
@@ -1129,11 +1132,12 @@ layui.define(["jquery","laytpl"], function (exports) {
                         _self[s](key,obj)
                         _self.nameIndex++;
                         _self.addKeyIndex++;
+                        myedit(e);//碰对的，谨慎使用！！！！！
                     })
                 })
-                
+
                 // 编辑
-                $("#tree-menu li.edit").off().on("click",function(e) {
+                function myedit(e) {
                     e.stopPropagation();
                     $("#tree-menu").hide().remove();
                     var node=$(that).parent(".eleTree-node");
@@ -1168,7 +1172,10 @@ layui.define(["jquery","laytpl"], function (exports) {
                         // 防止input拖拽
                         e.stopPropagation();
                     })
-                })
+                }
+
+                // 编辑
+                $("#tree-menu li.edit").off().on("click",myedit)
                 // 删除
                 $("#tree-menu li.remove").off().on("click",function(e) {
                     var node=$(that).parent(".eleTree-node");

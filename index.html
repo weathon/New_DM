@@ -73,23 +73,20 @@ var tree_json={};
 		
 	};
 	async function getData(){
-		
-		var returns=await eel.getD()();
-		//tree_json=JSON.parse(returns);
-                return returns;
+		       
 	}
 
  </script>
       <script>
     layui.config({
             base: "./src/layui/lay/mymodules/"
-        }).use(['jquery','table','eleTree','code','element'], function(){
+        }).use(['jquery','table','eleTree','code','element'],async function(){
             var $ = layui.jquery;
             var eleTree = layui.eleTree;
             var table = layui.table;
             var code = layui.code;
-            getData();
-            var data=tree_json;
+            var returns=await eel.getD()();
+            var data=JSON.parse(returns);
             
             tree1=eleTree.render({
                 elem: '.ele1',
