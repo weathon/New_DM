@@ -11,7 +11,18 @@ def getD():
 
 @eel.expose
 def setTree(data):
-    print(data)
+    # print(data)
+    try:
+        f=open("tree.json","w")
+        f.write(data)
+        f.close()
+        # return 0
+        returns=0
+    except:
+        # return -1
+        returns=-1
+        #Last time
+    return returns
 
 
 eel.init('./')

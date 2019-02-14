@@ -70,7 +70,12 @@
  <script>
       function tree_commit()
       {
-        eel.setTree(JSON.stringify(tree1.datas().data));
+        if(eel.setTree(JSON.stringify(tree1.datas().data)) == 0){
+          alert("修改成功！")
+        }
+        else{
+          alert("修改失败！请刷新后重试或联系支持部门。")
+        }
       }
 
  </script>
