@@ -1132,7 +1132,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                         _self[s](key,obj)
                         _self.nameIndex++;
                         _self.addKeyIndex++;
-                        myedit(e);//碰对的，谨慎使用！！！！！
+                        
                     })
                 })
 
@@ -1178,20 +1178,24 @@ layui.define(["jquery","laytpl"], function (exports) {
                 $("#tree-menu li.edit").off().on("click",myedit)
                 // 删除
                 $("#tree-menu li.remove").off().on("click",function(e) {
-                    var node=$(that).parent(".eleTree-node");
-                    var key=node.attr("data-"+options.request.key);
-                    key=isNaN(key) ? key : Number(key);
-                    var isStop=false;
-                    layui.event.call(node, MOD_NAME, 'nodeRemove('+ _self.filter +')', {
-                        node: node,
-                        data: nodeData.currentData,
-                        // 停止添加
-                        stop: function() {
-                            isStop=true;
-                        }
-                    });
-                    if(isStop) return;
-                    _self.remove(key);
+                    //细思极恐，删除了节点数据库怎么按？弄了半天js，难受！
+                    if(confirm("你确定要删除该节点及其所有子节点吗？")){
+                        var node=$(that).parent(".eleTree-node");
+                        var key=node.attr("data-"+options.request.key);
+                        key=isNaN(key) ? key : Number(key);
+                        var isStop=false;
+                        layui.event.call(node, MOD_NAME, 'nodeRemove('+ _self.filter +')', {
+                            node: node,
+                            data: nodeData.currentData,
+                            // 停止添加
+                            stop: function() {
+                                isStop=true;
+                            }
+                        });
+                        if(isStop) return;
+                        _self.remove(key);
+                    }
+
                 })
 
                 _self.prevClickEle=$(this);
