@@ -74,8 +74,9 @@ var tree_json={};
 	};
 	async function getData(){
 		
-		let returns=await eel.getD()();
-		tree_json=JSON.parse(returns);
+		var returns=await eel.getD()();
+		//tree_json=JSON.parse(returns);
+                return returns;
 	}
 
  </script>
