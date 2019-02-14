@@ -62,19 +62,16 @@
 <div class="layui-side layui-bg-black">
   <div class="eleTree ele1"></div>
   <br/><br/>
-	<div>点击<div class="layui-btn layui-btn-xs">此处</div>提交更改</div>
+	<div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改</div>
   
 
   </div>
  <script src='./src/layui/layui.js'></script>
  <script>
-var tree_json={};
-	function settree(){
-		
-	};
-	async function getData(){
-		       
-	}
+      function tree_commit()
+      {
+        eel.setTree(JSON.stringify(tree1.datas().data));
+      }
 
  </script>
       <script>

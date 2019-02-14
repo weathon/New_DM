@@ -3,7 +3,16 @@
 
 @eel.expose
 def getD():
-    return '''[{"id": 1,"label": "我的文档","children": []}]'''
+    f=open("tree.json","r")
+    json_data=f.read()
+    f.close()
+    print(json_data)
+    return json_data
+
+@eel.expose
+def setTree(data):
+    print(data)
+
 
 eel.init('./')
 eel.start('index.html')
