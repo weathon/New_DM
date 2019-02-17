@@ -84,9 +84,9 @@
     <script src='./src/layui/layui.js'></script>
     <script>
       //JavaScript代码区域
-      layui.use('element', function () {
+      layui.use(['element','lement'], function () {
         $ = layui.$
-        var element = layui.element;
+        ,element = layui.element;
         
       //yan jing shan guang
 
@@ -101,15 +101,23 @@
         $("#upload2").text("重新选择");
       }
       async function confirm(){
-        var return_value= await eel.upload(path);
-        if (return_value == 0) {
-          alert("任务提交成功！正在加密存储！")
-        }
-        else {
-          alert("任务提交失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
+      //   var return_value= await eel.upload(path);
+      //   if (return_value == 0) {
+      //     alert("任务提交成功！正在加密存储！")
+      //   }
+      //   else {
+      //     alert("任务提交失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
+      //   }
+      // }
+      //yan jing fei chang lei ,  qiang xing xie dai ma , shou bu liao, dan shi bu zheng xi jiu meijihui le
+      $("#TextBox").html('正在执行任务<br/><br/><div class="layui-progress layui-progress-big" lay-filter="demo" lay-showPercent="true">\
+  <div class="layui-progress-bar" lay-percent="0%"></div>\
+</div>')
+        for(var i=0;i<100;i++)
+        {
+          layui.lement.progress('demo', '50%');
         }
       }
-      // }
     </script>
 
 </body>
