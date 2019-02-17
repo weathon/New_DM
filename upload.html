@@ -63,13 +63,11 @@
       <!-- <input id="myInput" type="file" style={{visibility: 'hidden'}} webkitdirectory directory multiple/> -->
       <input id="fileselector" type="file" onchange="browseResult(event)" webkitdirectory directory multiple="false"
         style="display:none" />
-      <button onclick="getElementById('fileselector').click()">browse</button>
 
       <div class="layui-upload">
-        <button type="button" class="layui-btn" id="test2">导入图片(支持多张)</button>
-        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+        <button type="button" class="layui-btn" id="test2" onclick="getElementById('fileselector').click();">选择文件夹</button>
+        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;" id="TextBox">
           预览图：
-          <div class="layui-upload-list" id="demo2"></div>
         </blockquote>
       </div>
     </div>
@@ -81,6 +79,7 @@
       function browseResult(e) {
         var fileselector = document.getElementById('fileselector');
         console.log(fileselector.value);
+        document.getElementById('TextBox').innerHtML=fileselector;
       }
     </script>
 
