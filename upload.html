@@ -84,7 +84,7 @@
     <script src='./src/layui/layui.js'></script>
     <script>
       //JavaScript代码区域
-      layui.use(['element','lement'], function () {
+      layui.use(['element'], function () {
         $ = layui.$
         ,element = layui.element;
         
@@ -97,10 +97,10 @@
         // document.getElementById('TextBox').innerHtML="您选择了："+String(fileselector.value);
         // document.getElementById('upload2').innerHtML="重新选择";
         //这两种方法不行，也许上次做APP就出错在这里
-        $("#TextBox").html("您选择了："+fileselector.value+"<br/><br/><button class='layui-btn' onclick='confirm();'>确认</button>");
+        $("#TextBox").html("您选择了："+fileselector.value+"<br/><br/><button class='layui-btn' onclick='myconfirm();'>确认</button>");
         $("#upload2").text("重新选择");
       }
-      async function confirm(){
+      async function myconfirm(){
       //   var return_value= await eel.upload(path);
       //   if (return_value == 0) {
       //     alert("任务提交成功！正在加密存储！")
@@ -113,10 +113,10 @@
       $("#TextBox").html('正在执行任务<br/><br/><div class="layui-progress layui-progress-big" lay-filter="demo" lay-showPercent="true">\
   <div class="layui-progress-bar" lay-percent="0%"></div>\
 </div>')
-        for(var i=0;i<100;i++)
-        {
-          layui.lement.progress('demo', '50%');
-        }
+      //   for(var i=0;i<100;i++)
+      //   {
+      //     layui.lement.progress('demo', '50%');
+      //   }
       }
     </script>
 
