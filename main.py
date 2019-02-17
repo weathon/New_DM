@@ -29,5 +29,9 @@ def setTree(data):
 def logout():
     os._exit(0)
 
+@eel.expose
+def upload(path):
+    
+
 eel.init('./')
 eel.start('index.html')

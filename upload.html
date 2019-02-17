@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Weathon文档管理系统 | 文件导入</title>
   <link rel="stylesheet" href="./src/layui/css/layui.css">
+  <script type="text/javascript" src="/eel.js"></script>
 </head>
 
 
@@ -65,6 +66,8 @@
 
       <div class="layui-upload">
         <button type="button" class="layui-btn" id="upload2" onclick="getElementById('fileselector').click();">选择文件夹</button>
+        <br/> <br/> 
+        <p style="color:red">注意：请保证您选择的目录下只有指定格式（*.png,*.jpg,*.gif）的图片，且没有子目录。</p>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
           
               <p  id="TextBox">您还没有选择文件夹</p>
@@ -90,16 +93,23 @@
       });
       function browseResult(e) {
         var fileselector = document.getElementById('fileselector');
-        console.log(fileselector.value);
+        // console.log(fileselector.value);
         // document.getElementById('TextBox').innerHtML="您选择了："+String(fileselector.value);
         // document.getElementById('upload2').innerHtML="重新选择";
         //这两种方法不行，也许上次做APP就出错在这里
         $("#TextBox").html("您选择了："+fileselector.value+"<br/><br/><button class='layui-btn' onclick='confirm();'>确认</button>");
         $("#upload2").text("重新选择");
       }
-      function confirm(){
-        
+      async function confirm(){
+        var return_value= await eel.upload(path);
+        if (return_value == 0) {
+          alert("任务提交成功！正在加密存储！")
+        }
+        else {
+          alert("任务提交失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
+        }
       }
+      // }
     </script>
 
 </body>
