@@ -61,14 +61,13 @@
         <legend>多张图片导入</legend>
       </fieldset>
       <!-- <input id="myInput" type="file" style={{visibility: 'hidden'}} webkitdirectory directory multiple/> -->
-      <input id="fileselector" type="file" onchange="browseResult(event)" webkitdirectory directory multiple="false"
-        style="display:none" />
+      <input id="fileselector" type="file" onchange="browseResult(event)" webkitdirectory directory multiple="false" style="display:none" />
 
       <div class="layui-upload">
         <button type="button" class="layui-btn" id="upload2" onclick="getElementById('fileselector').click();">选择文件夹</button>
-        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;" id="TextBox">
+        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
           
-您还没有选择文件夹
+              <p  id="TextBox">您还没有选择文件夹</p>
 
         </blockquote>
       </div>
@@ -77,22 +76,30 @@
 
 
     <script src='./src/layui/layui.js'></script>
-    <script>
-      function browseResult(e) {
-        var fileselector = document.getElementById('fileselector');
-        console.log(fileselector.value);
-        document.getElementById('TextBox').innerHtML="您选择了："+String(fileselector.value);
-        document.getElementById('upload2').innerHtML="重新选择";
-      }
-    </script>
+
 
     <script src='./src/layui/layui.js'></script>
     <script>
       //JavaScript代码区域
       layui.use('element', function () {
+        $ = layui.$
         var element = layui.element;
+        
+      //yan jing shan guang
 
       });
+      function browseResult(e) {
+        var fileselector = document.getElementById('fileselector');
+        console.log(fileselector.value);
+        // document.getElementById('TextBox').innerHtML="您选择了："+String(fileselector.value);
+        // document.getElementById('upload2').innerHtML="重新选择";
+        //这两种方法不行，也许上次做APP就出错在这里
+        $("#TextBox").html("您选择了："+fileselector.value+"<br/><br/><button class='layui-btn' onclick='confirm();'>确认</button>");
+        $("#upload2").text("重新选择");
+      }
+      function confirm(){
+        
+      }
     </script>
 
 </body>
