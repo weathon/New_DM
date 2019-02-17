@@ -65,9 +65,11 @@
         style="display:none" />
 
       <div class="layui-upload">
-        <button type="button" class="layui-btn" id="test2" onclick="getElementById('fileselector').click();">选择文件夹</button>
+        <button type="button" class="layui-btn" id="upload2" onclick="getElementById('fileselector').click();">选择文件夹</button>
         <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;" id="TextBox">
-          预览图：
+          
+您还没有选择文件夹
+
         </blockquote>
       </div>
     </div>
@@ -79,7 +81,8 @@
       function browseResult(e) {
         var fileselector = document.getElementById('fileselector');
         console.log(fileselector.value);
-        document.getElementById('TextBox').innerHtML=fileselector;
+        document.getElementById('TextBox').innerHtML="您选择了："+String(fileselector.value);
+        document.getElementById('upload2').innerHtML="重新选择";
       }
     </script>
 
