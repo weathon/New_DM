@@ -1,5 +1,5 @@
 ﻿import eel
-
+import os
 
 @eel.expose
 def getD():
@@ -27,10 +27,12 @@ def setTree(data):
 
 @eel.expose
 def logout():
+    print("logout!")
     os._exit(0)
 
 @eel.expose
 def upload(path):
+    pass
     
 
 eel.init('./')
