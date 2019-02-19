@@ -12,6 +12,9 @@ def getD():
 @eel.expose
 def setTree(data):
     # print(data)
+    f=open("tree.json","r")
+    old_data=f.read()#For runback
+    f.close()
     try:
         f=open("tree.json","w")
         f.write(data)
@@ -23,6 +26,12 @@ def setTree(data):
         # return -1
         # print(repr(e))
         returns=repr(e)
+        try:
+            f.close()
+        except:
+            f=open("tree.json","w")
+            f.write(old_data)#Run back
+            f.close()
     return returns
 
 @eel.expose
