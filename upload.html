@@ -93,10 +93,6 @@
       });
       function browseResult(e) {
         var fileselector = document.getElementById('fileselector');
-        // console.log(fileselector.value);
-        // document.getElementById('TextBox').innerHtML="您选择了："+String(fileselector.value);
-        // document.getElementById('upload2').innerHtML="重新选择";
-        //这两种方法不行，也许上次做APP就出错在这里
         $("#TextBox").html("您选择了："+fileselector.value+"<br/><br/><button class='layui-btn' onclick='myconfirm();'>确认</button>");
         $("#upload2").text("重新选择");
       }
@@ -106,7 +102,7 @@
           alert("任务提交成功！正在加密存储！")
         }
         else {
-          alert("任务提交失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
+          alert("任务提交失败！请刷新后重试或记录下以下信息联系支持部门。\n" + return_value)
         }
       
       //yan jing fei chang lei ,  qiang xing xie dai ma , shou bu liao, dan shi bu zheng xi jiu meijihui le
