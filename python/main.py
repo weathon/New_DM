@@ -41,7 +41,8 @@ def logout():
 
 @eel.expose
 def upload(path):
-    pass
+    print("Upload"+path)
+    return "ff"
     
 
 eel.init('../')

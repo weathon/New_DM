@@ -101,14 +101,14 @@
         $("#upload2").text("重新选择");
       }
       async function myconfirm(){
-      //   var return_value= await eel.upload(path);
-      //   if (return_value == 0) {
-      //     alert("任务提交成功！正在加密存储！")
-      //   }
-      //   else {
-      //     alert("任务提交失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
-      //   }
-      // }
+        var return_value= await eel.upload(fileselector.value);
+        if (return_value == 0) {
+          alert("任务提交成功！正在加密存储！")
+        }
+        else {
+          alert("任务提交失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
+        }
+      
       //yan jing fei chang lei ,  qiang xing xie dai ma , shou bu liao, dan shi bu zheng xi jiu meijihui le
       $("#TextBox").html('正在执行任务<br/><br/><div class="layui-progress layui-progress-big" lay-filter="demo" lay-showPercent="true">\
   <div class="layui-progress-bar" lay-percent="20%"></div>\
