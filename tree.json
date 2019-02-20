@@ -1,1 +1,1 @@
-[{"id":1,"label":"My Docs","children":[{"id":20181201,"label":"DOC 1"},{"id":20181202,"label":"DOC 2"}]}]
+[{"id":1,"label":"My Docs","children":[{"id":20181201,"label":"DOC 1","children":[{"id":1550696796003,"label":"DOC 1-1"}]},{"id":20181202,"label":"DOC 2"}]}]

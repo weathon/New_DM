@@ -161,7 +161,7 @@ layui.define(["jquery","laytpl"], function (exports) {
         options.request=$.extend({}, this.config.request, options.request);
         this.config = $.extend({}, this.config, options);
         this.prevClickEle=null;
-        this.addKeyIndex=20181201;
+        // this.addKeyIndex=20181201;
         this.nameIndex=1;
         this.render();
     };
@@ -1100,7 +1100,7 @@ layui.define(["jquery","laytpl"], function (exports) {
 
                 // 添加的默认数据
                 var obj={};
-                obj[options.request.key]=_self.addKeyIndex;
+                obj[options.request.key]=Date.now();//_self.addKeyIndex;
                 obj[options.request.name]="未命名"+_self.nameIndex;
                 
                 var arr=["Append","InsertBefore","InsertAfter"];
@@ -1131,7 +1131,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                         if(isStop) return;
                         _self[s](key,obj)
                         _self.nameIndex++;
-                        _self.addKeyIndex++;
+                        // _self.addKeyIndex++;
                         
                     })
                 })
