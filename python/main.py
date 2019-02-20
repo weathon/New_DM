@@ -45,10 +45,4 @@ def upload(path):
     
 
 eel.init('../')
-myoptions=options = {
-        # 'mode': 'chrome-app',
-        'host': 'localhost',
-        'port': 8000,
-        'chromeFlags': ["--start-fullscreen","--lang=zh-CN"]
-}
-eel.start('index.html',options=myoptions)
+eel.start('index.html')
