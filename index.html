@@ -86,12 +86,14 @@
 
     </script>
     <script>
-      eleTree.on("nodeClick(data1)", function (d) {
+            tree1.on("nodeClick(data1)", function (d) {
         console.log(d.data);    // 点击节点对于的数据
         console.log(d.event);   // event对象
         console.log(d.node);    // 点击的dom节点
         console.log(this);      // 与d.node相同
       })
+      
+
       layui.config({
         base: "./src/layui/lay/mymodules/"
       }).use(['jquery', 'table', 'eleTree', 'code', 'element'], async function () {
