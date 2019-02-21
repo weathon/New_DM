@@ -61,14 +61,14 @@
 
     </div>
     <div class="layui-side layui-bg-black">
-      <div class="eleTree ele1"></div>
+      <div class="eleTree ele1" lay-filter="data1"></div>
       <br /><br />
       <div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改</div>
     </div>
 
     <div class="layui-body">
       <!-- 内容主体区域 -->
-
+      <iframe src="./table.html" height=500% width="500%"></iframe>
     </div>
 
 
@@ -86,13 +86,8 @@
 
     </script>
     <script>
-            tree1.on("nodeClick(data1)", function (d) {
-        console.log(d.data);    // 点击节点对于的数据
-        console.log(d.event);   // event对象
-        console.log(d.node);    // 点击的dom节点
-        console.log(this);      // 与d.node相同
-      })
-      
+
+
 
       layui.config({
         base: "./src/layui/lay/mymodules/"
@@ -104,15 +99,26 @@
         var returns = await eel.getD()();
         var data = JSON.parse(returns);
 
-        tree1 = eleTree.render({
+        var ele1 = eleTree.render({
           elem: '.ele1',
           data: data,
+          // checkOnClickNode:true,
           contextmenuList: ["copy", "add", "edit", "remove"],
-          draggable: true,
-          //               highlightCurrent:true,
+          draggable: true
+          // expandOnClickNode: false,
         });
-
+        tree1=ele1;
+        eleTree.on("nodeClick(data1)", function (d) {
+          console.log(d.data);    // 点击节点对于的数据
+          console.log(d.event);   // event对象
+          console.log(d.node);    // 点击的dom节点
+          console.log(this);      // 与d.node相同
+        })
       });
+      // yan jing na shou 
+      // xiangmu 
+      // console.log("");
+
     </script>
     <!-- If want light, use Eel, if want powerful, use cefpython-->
 

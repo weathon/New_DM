@@ -1051,7 +1051,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 $("#tree-menu").hide().remove();
             });
             var menuStr=['<ul id="tree-menu">'
-                ,$.inArray("copy",options.contextmenuList)!==-1?'<li class="copy"><a href="javascript:;">复制</a></li>':''
+                ,$.inArray("copy",options.contextmenuList)!==-1?'<li class="copy"><a href="javascript:;">复制标题</a></li>':''
                 ,$.inArray("add",options.contextmenuList)!==-1?'<li class="add"><a href="javascript:;">新增</a></li>'+
                     '<li class="insertBefore"><a href="javascript:;">插入节点<b>前</b></a></li>'+
                     '<li class="insertAfter"><a href="javascript:;">插入节点<b>后</b></a></li>'+
