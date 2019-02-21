@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <!-- VUG:https://github.com/hsiangleev/layuiExtend/issues/23-->
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -66,8 +67,8 @@
     </div>
 
     <div class="layui-body">
-        <!-- 内容主体区域 -->
- 
+      <!-- 内容主体区域 -->
+
     </div>
 
 
@@ -85,6 +86,12 @@
 
     </script>
     <script>
+      eleTree.on("nodeClick(data1)", function (d) {
+        console.log(d.data);    // 点击节点对于的数据
+        console.log(d.event);   // event对象
+        console.log(d.node);    // 点击的dom节点
+        console.log(this);      // 与d.node相同
+      })
       layui.config({
         base: "./src/layui/lay/mymodules/"
       }).use(['jquery', 'table', 'eleTree', 'code', 'element'], async function () {

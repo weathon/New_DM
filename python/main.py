@@ -44,6 +44,39 @@ def upload(path):
     print("Upload"+path)
     return "ff"
     
+@eel.expose
+def getkey():
+    f=open("key.list","r")
+    keys=f.read()
+    f.close()
+    return keys
+
+# using string but not list, slow?
+
+@eel.expose
+def setkey(data):
+    # print(data)
+    f=open("keys.list","r")
+    old_data=f.read()#For runback
+    f.close()
+    try:
+        f=open("keys.list","w")
+        f.write(data)
+        f.close()
+        # return 0
+        returns=0
+        # 5/0 Test Error 
+    except Exception as e:
+        # return -1
+        # print(repr(e))
+        returns=repr(e)
+        try:
+            f.close()
+        except:
+            f=open("keys.list","w")
+            f.write(old_data)#Run back
+            f.close()
+    return returns
 
 eel.init('../')
 eel.start('index.html')
