@@ -78,5 +78,5 @@ def setkey(data):
             f.close()
     return returns
 
-eel.init('../')
+eel.init('../html')
 eel.start('index.html')
