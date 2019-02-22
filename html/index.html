@@ -70,7 +70,7 @@
       <!-- 内容主体区域 -->
       <!--For welcome page, table, and adding page.-->
       <br/>
-      <iframe src="./table.html" height=96% width="100%" frameborder=0></iframe>
+      <iframe src="./welcome.html" height=96% width="100%" frameborder=0 id="myiframe"></iframe>
       <!--you huan cun, xiu gai buliao-->
       <!--左手中指一直到手臂一条筋疼-->
     </div>
@@ -113,10 +113,12 @@
         });
         tree1=ele1;
         eleTree.on("nodeClick(data1)", function (d) {
-          console.log(d.data);    // 点击节点对于的数据
-          console.log(d.event);   // event对象
-          console.log(d.node);    // 点击的dom节点
-          console.log(this);      // 与d.node相同
+          console.log("id:"+d.data.currentData.id); //id
+          // console.log(d.data);    // 点击节点对于的数据
+          // console.log(d.event);   // event对象
+          // console.log(d.node);    // 点击的dom节点
+          // console.log(this);      // 与d.node相同
+          $("#myiframe").attr("src","./table.html?id="+d.data.currentData.id);
         })
       });
       // yan jing na shou 
