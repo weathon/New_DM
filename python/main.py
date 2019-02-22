@@ -78,5 +78,11 @@ def setkey(data):
             f.close()
     return returns
 
+@eel.expose
+def welcome():
+    print("Welcome")
+    # For sure can open two ws://
+
+    
 eel.init('../html')
 eel.start('index.html')
