@@ -85,4 +85,4 @@ def welcome():
 
     
 eel.init('../html')
-eel.start('index.html')
+eel.start('index.html', options={'chromeFlags': ['--disable-http-cache','--incognito']})
