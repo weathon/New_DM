@@ -1,5 +1,6 @@
 ﻿import eel
 import os
+import database2
 
 @eel.expose
 def getD():
@@ -83,6 +84,10 @@ def welcome():
     print("Welcome")
     # For sure can open two ws://
 
-    
+@eel.expose
+def read_table(name):
+    name=database2.check_dangerous(name)
+    database2.runsql("SELECT * FROM "+name)
+
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': ['--disable-http-cache','--incognito']})
