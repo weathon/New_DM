@@ -66,11 +66,11 @@
       <div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改</div>
     </div>
 
-    <div class="layui-body">
+    <div class="layui-body" id="main">
       <!-- 内容主体区域 -->
       <!--For welcome page, table, and adding page.-->
-      <br/>
-      <iframe src="./welcome.html" height=96% width="100%" frameborder=0 id="myiframe"></iframe>
+
+      <!-- <iframe src="./welcome.html" height=96% width="100%" frameborder=0 id="myiframe"></iframe> -->
       <!--you huan cun, xiu gai buliao-->
       <!--左手中指一直到手臂一条筋疼-->
     </div>
@@ -112,13 +112,14 @@
           // expandOnClickNode: false,
         });
         tree1=ele1;
-        eleTree.on("nodeClick(data1)", function (d) {
+        eleTree.on("nodeClick(data1)", async function (d) {
           console.log("id:"+d.data.currentData.id); //id
           // console.log(d.data);    // 点击节点对于的数据
           // console.log(d.event);   // event对象
           // console.log(d.node);    // 点击的dom节点
           // console.log(this);      // 与d.node相同
-          $("#myiframe").attr("src","./table.html?id="+d.data.currentData.id);
+          table_html=eel.read_table(d.data.currentData.id)()
+          $("#main").html(table_html)
         })
       });
       // yan jing na shou 
