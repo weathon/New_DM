@@ -9,6 +9,21 @@
   <link rel="stylesheet" href="./src/layui/css/layui.css">
   <link rel="stylesheet" href="eleTree.css" media="all">
   <script type="text/javascript" src="/eel.js"></script>
+  <style>
+    .ce{
+       text-align: center; /*让div内部文字居中*/
+       border-radius: 20px;
+       width: 600px;
+       height: 350px;
+       margin: auto;
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       color: gray
+   }
+   </style>
 </head>
 
 <!-- 眼睛非常累，很难受,有点不想做 xiang mu , wu PC -->
@@ -69,9 +84,27 @@
     <div class="layui-body" id="main">
       <!-- 内容主体区域 -->
       <!--For welcome page, table, and adding page.-->
-
-      <!-- <iframe src="./welcome.html" height=96% width="100%" frameborder=0 id="myiframe"></iframe> -->
-      <!--you huan cun, xiu gai buliao-->
+      <table id="tb" lay-filter="main_table"></table>
+      <!-- <table class="layui-table" lay-data='{height:315, data:[{"id":10000,"username":"user-0","sex":"女","city":"城市-0","sign":"签名-0","experience":255,"logins":24,"wealth":82830700,"classify":"作家","score":57},{"id":10001,"username":"user-1","sex":"男","city":"城市-1","sign":"签名-1","experience":884,"logins":58,"wealth":64928690,"classify":"词人","score":27},{"id":10002,"username":"user-2","sex":"女","city":"城市-2","sign":"签名-2","experience":650,"logins":77,"wealth":6298078,"classify":"酱油","score":31},{"id":10003,"username":"user-3","sex":"女","city":"城市-3","sign":"签名-3","experience":362,"logins":157,"wealth":37117017,"classify":"诗人","score":68},{"id":10004,"username":"user-4","sex":"男","city":"城市-4","sign":"签名-4","experience":807,"logins":51,"wealth":76263262,"classify":"作家","score":6},{"id":10005,"username":"user-5","sex":"女","city":"城市-5","sign":"签名-5","experience":173,"logins":68,"wealth":60344147,"classify":"作家","score":87},{"id":10006,"username":"user-6","sex":"女","city":"城市-6","sign":"签名-6","experience":982,"logins":37,"wealth":57768166,"classify":"作家","score":34},{"id":10007,"username":"user-7","sex":"男","city":"城市-7","sign":"签名-7","experience":727,"logins":150,"wealth":82030578,"classify":"作家","score":28},{"id":10008,"username":"user-8","sex":"男","city":"城市-8","sign":"签名-8","experience":951,"logins":133,"wealth":16503371,"classify":"词人","score":14},{"id":10009,"username":"user-9","sex":"女","city":"城市-9","sign":"签名-9","experience":484,"logins":25,"wealth":86801934,"classify":"词人","score":75}], page:true, id:"test"}'>
+        <thead>
+          <tr>
+            <th lay-data="{field:'id', width:80, sort: true}">ID</th>
+            <th lay-data="{field:'username', width:80}">用户名</th>
+            <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
+            <th lay-data="{field:'city'}">城市</th>
+            <th lay-data="{field:'sign'}">签名</th>
+            <th lay-data="{field:'experience', sort: true}">积分</th>
+            <th lay-data="{field:'score', sort: true}">评分</th>
+            <th lay-data="{field:'classify'}">职业</th>
+            <th lay-data="{field:'wealth', sort: true}">财富</th>
+          </tr>
+        </thead>
+      </table> -->
+      <br/><br/><br/><br/><br/><br/>
+        <div id="toolbar">
+        <h1 class="ce">欢迎使用Weathon文档管理系统</h1>
+      </div>
+        <!--you huan cun, xiu gai buliao-->
       <!--左手中指一直到手臂一条筋疼-->
     </div>
 
@@ -118,8 +151,19 @@
           // console.log(d.event);   // event对象
           // console.log(d.node);    // 点击的dom节点
           // console.log(this);      // 与d.node相同
-          table_html=eel.read_table(d.data.currentData.id)()
-          $("#main").html(table_html)
+          // table_html=await eel.read_table(d.data.currentData.id)();
+          // console.log(table_html);
+          $("#toorbar").html("<button>Add</button>");
+          var table = layui.table;
+          mycols=await eel.get_cols()();
+          //执行渲染
+          table.render({
+            elem: '#tb' //指定原始表格元素选择器（推荐id选择器）
+            ,height: '95%' //容器高度
+            ,cols: mycols //设置表头
+            ,
+            });
+              
         })
       });
       // yan jing na shou 
