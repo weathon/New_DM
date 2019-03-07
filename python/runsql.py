@@ -36,25 +36,7 @@ def runsql(sql):
 print("-----------------------------------------------")
 print(runsql('select * from sqlite_master where type="table";'))
 print("-----------------------------------------------")
-# print(runsql('''CREATE TABLE test (
-# PATH nvarchar,
-# ID int,
-# key1 nvarchar,
-# key2 nvarchar,
-# key3 nvarchar,
-# key4 nvarchar,
-# key5 nvarchar,
-# key6 nvarchar,
-# key7 nvarchar,
-# key8 nvarchar,
-# key9 nvarchar,
-# key10 nvarchar,
-# key11 nvarchar,
-# key12 nvarchar,
-# key13 nvarchar,
-# key14 nvarchar,
-# key15 nvarchar
-# )'''))
+print(runsql("""))
 while 1:
       print(runsql(input(">")))
 # INSERT INTO test (key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key1,key13,key14,key15) VALUES ("test","test","test","test","test","test","test","tst","test","test","test","test","test","test","test")
