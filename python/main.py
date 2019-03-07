@@ -90,5 +90,15 @@ def get_cols():
     keys=myjson.readkeys()
     return keys
 
+@eel.expose
+def getData(id):
+    id=database2.check_dangerous(id)
+    result=database2.runsql("select * from "+id)
+    print(result)
+    rmyjson=myjson.list2json(result)
+    print(rmyjson)
+    return rmyjson
+
+
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': ['--disable-http-cache','--incognito']})

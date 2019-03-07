@@ -36,7 +36,7 @@ def runsql(sql):
 print("-----------------------------------------------")
 print(runsql('select * from sqlite_master where type="table";'))
 print("-----------------------------------------------")
-print(runsql("""))
+# print(runsql(">"))
 while 1:
       print(runsql(input(">")))
-# INSERT INTO test (key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key1,key13,key14,key15) VALUES ("test","test","test","test","test","test","test","tst","test","test","test","test","test","test","test")
+# INSERT INTO test (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key1,key13,key14,key15) VALUES ("/",1551996482,"test","test","test","test","test","test","test","tst","test","test","test","test","test","test","test")
