@@ -10,20 +10,21 @@
   <link rel="stylesheet" href="eleTree.css" media="all">
   <script type="text/javascript" src="/eel.js"></script>
   <style>
-    .ce{
-       text-align: center; /*让div内部文字居中*/
-       border-radius: 20px;
-       width: 600px;
-       height: 350px;
-       margin: auto;
-       position: absolute;
-       top: 0;
-       left: 0;
-       right: 0;
-       bottom: 0;
-       color: gray
-   }
-   </style>
+    .ce {
+      text-align: center;
+      /*让div内部文字居中*/
+      border-radius: 20px;
+      width: 600px;
+      height: 350px;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: gray
+    }
+  </style>
 </head>
 
 <!-- 眼睛非常累，很难受,有点不想做 xiang mu , wu PC -->
@@ -100,15 +101,15 @@
           </tr>
         </thead>
       </table> -->
-      <br/><br/><br/><br/><br/><br/>
-        <div id="toolbar">
+      <br /><br /><br /><br /><br /><br />
+      <div id="toolbar">
         <h1 class="ce">欢迎使用Weathon文档管理系统</h1>
       </div>
-        <!--you huan cun, xiu gai buliao-->
+      <!--you huan cun, xiu gai buliao-->
       <!--左手中指一直到手臂一条筋疼-->
     </div>
 
-<!--yan la, xiu gai shu ban ge xiao shi, hen gan-->
+    <!--yan la, xiu gai shu ban ge xiao shi, hen gan-->
     <script src='./src/layui/layui.js'></script>
     <script>
       async function tree_commit() {
@@ -144,9 +145,15 @@
           draggable: true
           // expandOnClickNode: false,
         });
-        tree1=ele1;
+        tree1 = ele1;
+        var mycols = await eel.get_cols()();
+        my_fin_cols = [[]];
+        for (var i = 1; i <= 15; i++) {
+          my_fin_cols.push({ "field": "key" + String(i), "title": mycols[i - 1], "sort": 1, "edit": 1 });
+        }
+        console.log(my_fin_cols);
         eleTree.on("nodeClick(data1)", async function (d) {
-          console.log("id:"+d.data.currentData.id); //id
+          console.log("id:" + d.data.currentData.id); //id
           // console.log(d.data);    // 点击节点对于的数据
           // console.log(d.event);   // event对象
           // console.log(d.node);    // 点击的dom节点
@@ -155,18 +162,18 @@
           // console.log(table_html);
           $("#toorbar").html("<button>Add</button>");
           var table = layui.table;
-          mycols=await eel.get_cols()();
+
           //执行渲染
           table.render({
             elem: '#tb' //指定原始表格元素选择器（推荐id选择器）
-            ,height: '95%' //容器高度
-            ,cols: mycols //设置表头
-            ,
-            });
-              
+            , height: '95%' //容器高度
+            , cols: my_fin_cols //设置表头
+            // ,data:
+          });
+
         })
       });
-      // yan jing na shou 
+      // yan jing na shou
       // xiangmu 
       // console.log("");
 
@@ -174,17 +181,5 @@
     <!-- If want light, use Eel, if want powerful, use cefpython-->
 
 </body>
-<!-- wei le xiang mu, zhe me zuo zhi de ma? yanjing ,shengti 
-hen fan zao !!!!!!!
-hen fu za de xing qing
-bu zhi suo cuo, you bu yuan cheng reng 
-hou hui
-fan zao
-tai duo dong xi yao zuo
-
-ge ge bu rang yong 
-
-ying xiang xue xi 
--->
 
 </html>
