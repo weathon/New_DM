@@ -37,6 +37,11 @@ print("-----------------------------------------------")
 print(runsql('select * from sqlite_master where type="table";'))
 print("-----------------------------------------------")
 # print(runsql(">"))
-while 1:
-      print(runsql(input(">")))
-# INSERT INTO test (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key1,key13,key14,key15) VALUES ("/",1551996482,"test","test","test","test","test","test","test","tst","test","test","test","test","test","test","test")
+if __name__=="__main__":
+    while 1:
+          sqlcmd=input(">")
+          if sqlcmd==":quit":
+              quit()
+          else:
+              print(runsql(sqlcmd))
+# INSERT INTO test (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) VALUES ("/",1551996482,"test","test","test","test","test","test","test","test","test","test","test","test","test","test","test")
