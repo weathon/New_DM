@@ -165,9 +165,9 @@
         var mycols = await eel.get_cols()();
         my_fin_cols = [[]];
         console.log(mycols);
-        my_fin_cols[0].push({filed:"ID",hide:True})
+        my_fin_cols[0].push({filed:"ID",hide:True,title:"ID"});
         for (var s = 1; s <= 15; s++) {//s++ or ++s
-          my_fin_cols[0].push({ "field": "key" + String(s), "title": mycols[s - 1], "sort": True, "edit": True});
+          my_fin_cols[0].push({ "field": "key" + String(s), "title": mycols[s-1], "sort": True, "edit": True});
         }
         my_fin_cols[0].push({unresize:True,width:128,fixed: 'right', align:'center', toolbar: '#tableBar'})
         // my_fin_cols[0][0].hide=True;
