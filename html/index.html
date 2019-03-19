@@ -166,7 +166,15 @@
           });
 
         })
+
+        table.on('edit(main_table)', function(obj){
+          // console.log(obj.value); //得到修改后的值
+          // console.log(obj.field); //当前编辑的字段名
+          console.log(obj.data.ID); //所在行的所有相关数据
+          let returnMessage = eel.update(obj.value,obj.field,obj.data.ID)
+        });
       });
+
 
 
     </script>

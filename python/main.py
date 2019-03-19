@@ -13,7 +13,7 @@ def getD():
 
 @eel.expose
 def setTree(data):
-    # print(data) 
+    # print(data)
     f=open("tree.json","r")
     old_data=f.read()#For runback
     f.close()
@@ -23,7 +23,7 @@ def setTree(data):
         f.close()
         # return 0
         returns=0
-        # 5/0 Test Error 
+        # 5/0 Test Error
     except Exception as e:
         # return -1
         # print(repr(e))
@@ -45,7 +45,7 @@ def logout():
 def upload(path):
     print("Upload"+path)
     return "ff"
-    
+
 @eel.expose
 def getkey():
     f=open("key.list","r")
@@ -67,7 +67,7 @@ def setkey(data):
         f.close()
         # return 0
         returns=0
-        # 5/0 Test Error 
+        # 5/0 Test Error
     except Exception as e:
         # return -1
         # print(repr(e))
@@ -99,6 +99,15 @@ def getData(id):
     print(rmyjson)
     return rmyjson
 
+@eel.expose
+def update(value,field,data):
+    try:
+        value=database2.check_dangerous(value)
+        
+    except Exception as e:
+        myreturn=repr(e)
+
+    return myreturn
 
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': ['--disable-http-cache','--incognito']})
