@@ -84,7 +84,7 @@
     <div class="layui-side layui-bg-black">
       <div class="eleTree ele1" lay-filter="data1"></div>
       <br /><br />
-      <div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改</div>
+      <div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改<br/>(不包括添加或删除节点)</div>
     </div>
 
     <div class="layui-body" id="main">
@@ -166,6 +166,13 @@
             page: true
           });
 
+        })
+
+
+        eleTree.on("nodeInsertAfter(data1)",function(d) {
+            console.log("ADD");
+            console.log(d.newData);
+            tree_commit();
         })
 
         table.on('edit(main_table)', async function(obj){
