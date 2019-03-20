@@ -165,15 +165,15 @@
             data:mydata,
             page: true
           });
-
         })
-
-
-        eleTree.on("nodeInsertAfter(data1)",function(d) {
+        console.log("-");
+        //顺序事件？要放在外面use sync is fine  Still not working
+        eleTree.on("nodeInsertAfter(data1)",async function(d) {
             console.log("ADD");
             console.log(d.newData);
             tree_commit();
         })
+
 
         table.on('edit(main_table)', async function(obj){
           // console.log(obj.value); //得到修改后的值
