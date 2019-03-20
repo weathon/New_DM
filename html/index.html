@@ -118,7 +118,7 @@
 </script>
     <script>
 
-
+    var mytable_name=""
 
       layui.config({
         base: "./src/layui/lay/mymodules/"
@@ -153,6 +153,7 @@
         console.log(my_fin_cols);
         eleTree.on("nodeClick(data1)", async function (d) {
           console.log("id:" + d.data.currentData.id); //id
+          mytable_name=String(d.data.currentData.id);
           var table = layui.table;
           var mydata = await eel.getData(d.data.currentData.id)();
           console.log(mydata);
@@ -167,11 +168,15 @@
 
         })
 
-        table.on('edit(main_table)', function(obj){
+        table.on('edit(main_table)', async function(obj){
           // console.log(obj.value); //得到修改后的值
           // console.log(obj.field); //当前编辑的字段名
-          console.log(obj.data.ID); //所在行的所有相关数据
-          let returnMessage = eel.update(obj.value,obj.field,obj.data.ID)
+          // console.log(obj.data.ID); //所在行的所有相关数据
+          let returnMessage = await eel.update(mytable_name,obj.value,obj.field,obj.data.ID)()
+          if(returnMessage!="0")
+          {
+            alert("修改失败！请刷新后重试或记录下以下信息联系支持部门。\n" + returnMessage)
+          }
         });
       });
 

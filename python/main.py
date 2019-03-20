@@ -94,16 +94,18 @@ def get_cols():
 def getData(id):
     id=database2.check_dangerous(id)
     result=database2.runsql("select * from "+id)
-    print(result)
+    # print(result)
     rmyjson=myjson.list2json(result)
-    print(rmyjson)
+    # print(rmyjson)
     return rmyjson
 
 @eel.expose
-def update(value,field,data):
+def update(table_name,value,field,ID):
     try:
         value=database2.check_dangerous(value)
-        
+        print(value)
+        database2.runsql('UPDATE %s set %s ="%s" WHERE ID=%i;' %(table_name,field,value,ID))
+        myreturn="0"
     except Exception as e:
         myreturn=repr(e)
 
