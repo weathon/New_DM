@@ -4,7 +4,7 @@ import os
 # f=open("../config.inf")
 def mkdir(path):
     folder = os.path.exists(path)
-    if not folder:            
+    if not folder:
         os.makedirs(path)
         return 0
     else:
@@ -21,9 +21,9 @@ def add(father,name,dir_or_file):#Dir_or_file:if it is '1', it means user want t
         database2.runsql("create table "+name+" (id varchar(20) primary key, name varchar(20))")
         database.kmform(name=dir_or_file)
         f.close()
-        
+
 """
-  
+
 
 def read(path):
   files= os.listdir(path)#获取所有文件和文件夹

@@ -7,7 +7,11 @@ try:
 	device = devices[0]
 	print("I'm going to use the following scanner: %s" % (str(device)))
 
-	pyinsane2.set_scanner_opt(device, 'resolution', [300])
+	try:
+		pyinsane2.set_scanner_opt(device, 'source', ['ADF', 'Feeder'])
+	except PyinsaneException:
+		print("No document feeder found")
+		# return
 
 # Beware: Some scanners have "Lineart" or "Gray" as default mode
 # better set the mode everytime
@@ -17,12 +21,19 @@ try:
 # they could scan.
 	pyinsane2.maximize_scan_area(device)
 
-	scan_session = device.scan(multiple=False)
+	scan_session = device.scan(multiple=True)
 	try:
 		while True:
-			scan_session.scan.read()
-	except EOFError:
-		pass
-	image = scan_session.images[-1]
+			try:
+				scan_session.scan.read()
+			except EOFError:
+				print ("Got a page ! (current number of pages read: %d)"
+					% (len(scan_session.images)))
+	except StopIteration:
+		print("Document feeder is now empty. Got %d pages"
+			% len(scan_session.images))
+	for idx in range(0, len(scan_session.images)):
+		image = scan_session.images[idx]
+		image.save("output"+str(idx)+".png")
 finally:
 	pyinsane2.exit()
