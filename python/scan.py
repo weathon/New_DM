@@ -34,6 +34,6 @@ try:
 			% len(scan_session.images))
 	for idx in range(0, len(scan_session.images)):
 		image = scan_session.images[idx]
-		image.save("output"+str(idx)+".png")
+		image.save("output/"+str(idx)+".png")
 finally:
 	pyinsane2.exit()
