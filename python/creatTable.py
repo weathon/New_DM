@@ -1,6 +1,6 @@
 import database2
-sqlobject=database2.MSSQL("127.0.0.1","SA","password","MAIN")
-sqlobject.ExecNonQuery('''CREATE TABLE test (
+# sqlobject=database2.MSSQL("127.0.0.1","SA","password","MAIN")
+database2.runsql('''CREATE TABLE test (
  PATH nvarchar(4000),
  ID int,
  key1 nvarchar(4000),

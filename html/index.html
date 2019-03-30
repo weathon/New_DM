@@ -118,7 +118,18 @@
 </script>
     <script>
       function add_docs() {
-
+        tree_commit();
+        layer.open({
+            content: '清选择倒入方式'
+            , btn: ['扫描仪','文件']
+            , yes: function (index, layero) {
+                window.location.href="./scan.html";
+              //按钮【按钮一】的回调
+            }
+            , btn2: function (index, layero) {
+              window.location.href="upload.html";
+            }
+          });
       }
 
       var mytable_name = ""
@@ -193,15 +204,3 @@
 </body>
 
 </html>
-
-// layer.open({
-  //   content: '清选择倒入方式'
-  //   , btn: ['扫描仪','文件']
-  //   , yes: function (index, layero) {
-  //     tree_commit();
-  //     //按钮【按钮一】的回调
-  //   }
-  //   , btn2: function (index, layero) {
-  //     tree_commit();
-  //   }
-  // });

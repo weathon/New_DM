@@ -2,6 +2,8 @@
 import os
 import database2
 import myjson
+from tkinter import filedialog
+from tkinter import *
 
 @eel.expose
 def getD():
@@ -110,6 +112,27 @@ def update(table_name,value,field,ID):
         myreturn=repr(e)
 
     return myreturn
+
+@eel.expose
+def chose_folder():
+    root = Tk()
+    root.withdraw()
+    folder_selected = filedialog.askdirectory()
+    return folder_selected
+
+@eel.expose
+def getForm():
+    keys=getkey().split()
+    result=""
+    form="""<div class="layui-form-item" pane>
+    <label class="layui-form-label">%s</label>
+    <div class="layui-input-block">
+    <input type="text" name="title" required lay-verify="required" placeholder="请输入对应值(不超过2000个字符)" autocomplete="off" class="layui-input">    
+    </div>
+    </div>"""
+    for i in keys:
+        result+=form % i
+    return result
 
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': ['--disable-http-cache','--incognito']})
