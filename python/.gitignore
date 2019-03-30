@@ -1,2 +1,4 @@
 *.db
 *.pyc
+database2_mssql.py
+fakeData.py
