@@ -1,40 +1,6 @@
-import sqlite3
-# import pymssql
-# def connect():
-#   f=open("config.inf","rb")
-#   ip,user,psd,database_name=pickle.load(f)
-#   print(ip,user,psd,database_name)
-#   f.close()
-#   conn = pymssql.connect(host='127.0.0.1',
-#                         user='',
-#                         password='123',
-#                         database='SQLTest',
-#                         charset='utf8')
-#   #return conn
- 
-# #   cursor = conn.cursor()
-# #   sql = 'select * from student'
-# #   cursor.execute(sql)
-# #     rs = cursor.fetchall()
-
-# #   print(rs)
-# connect()
-def runsql(sql):
-      database_name="main"
-      conn = sqlite3.connect(database_name+".db")
-      cursor = conn.cursor()
-      cursor.execute(sql)
-      values = cursor.fetchall()
-      # 关闭Cursor:
-      cursor.close()
-      # 提交事务:
-      conn.commit()
-      # 关闭Connection:
-      conn.close()
-      return values
-#show_table
+from database_mssql import runsql
 print("-----------------------------------------------")
-print(runsql('select * from sqlite_master where type="table";'))
+# print(runsql('select * from sqlite_master where type="table";'))  ONLY SQLITE
 print("-----------------------------------------------")
 # print(runsql(">"))
 if __name__=="__main__":
