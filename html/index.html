@@ -10,11 +10,10 @@
   <link rel="stylesheet" href="eleTree.css" media="all">
   <script type="text/javascript" src="/eel.js"></script>
   <script>
-    var True=true;
-    var Ture=true;
+    var True = true;
+    var Ture = true;
   </script>
   <style>
-
     .ce {
       text-align: center;
       /*让div内部文字居中*/
@@ -84,7 +83,7 @@
     <div class="layui-side layui-bg-black">
       <div class="eleTree ele1" lay-filter="data1"></div>
       <br /><br />
-      <div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改<br/>(不包括添加或删除节点)</div>
+      <div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改<br />(不包括添加或删除节点)</div>
     </div>
 
     <div class="layui-body" id="main">
@@ -105,7 +104,7 @@
       async function tree_commit() {
         var ret = await eel.setTree(JSON.stringify(tree1.datas().data))();
         if (ret == 0) {
-          alert("修改成功！")
+          console.log("修改成功！")
         }
         else {
           alert("修改失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
@@ -113,16 +112,16 @@
       }
 
     </script>
-<script type="text/html" id="tableBar">
+    <script type="text/html" id="tableBar">
   <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
     <script>
-    function add_docs(){
-        
-    }
+      function add_docs() {
 
-    var mytable_name=""
+      }
+
+      var mytable_name = ""
 
       layui.config({
         base: "./src/layui/lay/mymodules/"
@@ -147,17 +146,17 @@
         var mycols = await eel.get_cols()();
         my_fin_cols = [[]];
         console.log(mycols);
-        my_fin_cols[0].push({filed:"ID",hide:True,title:"ID"});
+        my_fin_cols[0].push({ filed: "ID", hide: True, title: "ID" });
         for (var s = 1; s <= 15; s++) {//s++ or ++s
-          my_fin_cols[0].push({ "field": "key" + String(s), "title": mycols[s-1], "sort": True, "edit": True});
+          my_fin_cols[0].push({ "field": "key" + String(s), "title": mycols[s - 1], "sort": True, "edit": True });
         }
-        my_fin_cols[0].push({unresize:True,width:128,fixed: 'right', align:'center', toolbar: '#tableBar'})
+        my_fin_cols[0].push({ unresize: True, width: 128, fixed: 'right', align: 'center', toolbar: '#tableBar' })
         // my_fin_cols[0][0].hide=True;
 
         console.log(my_fin_cols);
         eleTree.on("nodeClick(data1)", async function (d) {
           console.log("id:" + d.data.currentData.id); //id
-          mytable_name=String(d.data.currentData.id);
+          mytable_name = String(d.data.currentData.id);
           var table = layui.table;
           var mydata = await eel.getData(d.data.currentData.id)();
           console.log(mydata);
@@ -166,33 +165,43 @@
           table.render({
             elem: '#tb',
             cols: my_fin_cols,//设置表头
-            data:mydata,
+            data: mydata,
             page: true
           });
         })
 
         console.log("-");
         //顺序事件？要放在外面use sync is fine  Still not working
-        eleTree.on("nodeInsertAfter(data1)",async function(d) {
-            console.log("ADD");
-            console.log(d.newData);
-            tree_commit();
+        eleTree.on("nodeInsertAfter(data1)", async function (d) {
+          console.log("ADD");
+          console.log(d.newData);
+          tree_commit();
         })
 
 
-        table.on('edit(main_table)', async function(obj){
-          let returnMessage = await eel.update(mytable_name,obj.value,obj.field,obj.data.ID)()
-          if(returnMessage!="0")
-          {
+        table.on('edit(main_table)', async function (obj) {
+          let returnMessage = await eel.update(mytable_name, obj.value, obj.field, obj.data.ID)()
+          if (returnMessage != "0") {
             alert("修改失败！请刷新后重试或记录下以下信息联系支持部门。\n" + returnMessage)
           }
         });
-      });
 
-
+      })
 
     </script>
 
 </body>
 
 </html>
+
+// layer.open({
+  //   content: '清选择倒入方式'
+  //   , btn: ['扫描仪','文件']
+  //   , yes: function (index, layero) {
+  //     tree_commit();
+  //     //按钮【按钮一】的回调
+  //   }
+  //   , btn2: function (index, layero) {
+  //     tree_commit();
+  //   }
+  // });
