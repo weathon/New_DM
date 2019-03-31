@@ -144,9 +144,10 @@
 						// eel.upload();
 						// alert(resolution,mode,feeder)
 						tabel_name = getID();
-						let myreturn_ = await scan(myresolution, mode, feeder, value_list, tabel_name)();
-						if (myreturn_ != "0") {
-							alert("发生严重错误！错误信息如下(您可以自行解决或者尝试联系客服)：\n" + myreturn_)
+						console.log(tabel_name);
+						let myreturn = await eel.scan(myresolution, mode, feeder, value_list, tabel_name)();//此行导致反复弹窗
+						if (myreturn != "0") {
+							alert("发生严重错误！错误信息如下(您可以自行解决或者尝试联系客服)：\n" + myreturn);
 						}
 						else {
 							alert("上传成功！");
