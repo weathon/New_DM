@@ -196,7 +196,7 @@ def scan(resolution, mode, feeder, values,table_name):
         database2.runsql('INSERT INTO %s \
             (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
             VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
-            return "0"
+        return "0"
     except Exception as e:
         return str(repr(e))
 
