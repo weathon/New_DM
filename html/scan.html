@@ -101,7 +101,7 @@
 		<script>
 			eel.expose(PageConsole); // Expose this function to Python
 			function PageConsole(msg) {
-				$("#main").html($("#main").html()+"\n"+msg);
+				$("#main").html($("#main").html()+"<br/>"+msg);
 			}
 
 			function getLabel() {
