@@ -183,6 +183,7 @@ def scan(resolution, mode, feeder, values_table_name):
         # pad
         path = old_scan.start(resolution, mode)
         print(path)
+    
 
 @eel.expose
 def upload(path,values,table_name):

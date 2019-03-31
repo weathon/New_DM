@@ -98,10 +98,12 @@
 		</div>
 		<script src='./src/layui/layui.js'></script>
 		<script>
-			function getQueryString(name) {
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-				var r = window.location.search.substr(1).match(reg);
-				if (r != null) return unescape(r[2]); return null;
+			function getLabel() {
+				return decodeURI(window.location.search.substr(1)).split("&")[1].split("=")[1];
+			}
+
+			function getID() {//Table Name
+				return decodeURI(window.location.search.substr(1)).split("&")[0].split("=")[1];
 			}
 			window.onload = async function () {
 				$ = layui.$;
@@ -113,7 +115,7 @@
 				// // $("#scaner").html(dev);
 				// console.log(dev);
 				// document.getElementById("scaner2").innerHTML = dev;
-				$('#nodemsg').text("您正在向"+getQueryString("label")+"中添加文档");
+				$('#nodemsg').html("您正在向<b>“"+getLabel()+"”</b>中添加文档");
 			}
 			//JavaScript代码区域
 			layui.use(['element', 'form', 'layer'], function () {
@@ -129,7 +131,7 @@
 					value_list.push($('#key' + i).val());
 				}
 				console.log(value_list);
-				if ((myresolution == "") or (mode == "") or (feeder == "")) {
+				if ((myresolution == "") || (mode == "") || (feeder == "")) {
 					layer.open({
 						anim: 6,
 						time: 1500,
@@ -140,7 +142,8 @@
 					if (confirm("你确定要提交吗?")) {
 						// eel.upload();
 						// alert(resolution,mode,feeder)
-						eel.scan(myresolution, mode, feeder, value_list)
+						tabel_name=getID();
+						eel.scan(myresolution, mode, feeder, value_list,tabel_name)
 					}
 				}
 
