@@ -1,5 +1,8 @@
 import pyinsane2
 import datetime
+import pickle
+import os
+
 def get_devices_function():
 	pyinsane2.init()
 	devices = pyinsane2.get_devices()
@@ -51,16 +54,18 @@ def feeder(resolution,mode):
 				% len(scan_session.images))
 		for idx in range(0, len(scan_session.images)):
 			image = scan_session.images[idx]
-			image.save("output/"+str(myid)+str(now.date())+str(idx)+".png")
+			os.mkdir("./output/"+str(myid))
+			image.save("./output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png")
 	finally:
 		pyinsane2.exit()
-		return "output/"+str(myid)
+		return "./output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png"
 
 def start(resolution,mode):
 	with open("usedid.txt") as myfile:
 		myid=myfile.read()
 	with open("usedid.txt",'w') as myfile:
 		myfile.write(str(int(myid)+1))
+
 	now = datetime.datetime.now()
 	pyinsane2.init()
 	try:
@@ -86,7 +91,9 @@ def start(resolution,mode):
 		except EOFError:
 			pass
 		image = scan_session.images[-1]
-		image.save("output/"+str(myid)+"/"+str(now.date())+str(idx)+".png")
+		os.mkdir("./output/"+str(myid))
+		image.save("./output/"+str(myid)+"/"+str(now.date())+str(0)+".png")
 	finally:
 		pyinsane2.exit()
-		return "output/"+str(myid)
+		return "./output/"+str(myid)+"/"+str(now.date())+str(0)+".png"
+		#以idngyaofangzai finily 

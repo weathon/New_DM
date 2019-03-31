@@ -65,18 +65,18 @@
 							<option value="Color">彩色</option>
 							<option value="Gray">黑白</option>
 							<!-- <option value="Lineart">线条</option> -->
-							
+
 							<!-- Gray, no grey -->
 						</select>
 					</div>
 
 					<div class="layui-input-inline">
-							<select name="mode" lay-verify="" id="feeder">
-								<option value="">请选择纸张来源</option>
-								<option value="1">自动托盘</option>
-								<option value="0">平板</option>
-							</select>
-						</div>
+						<select name="mode" lay-verify="" id="feeder">
+							<option value="">请选择纸张来源</option>
+							<option value="1">自动托盘</option>
+							<option value="0">平板</option>
+						</select>
+					</div>
 					<!-- <div class="layui-input-inline" id="scaner">
 							<select name="scaner" lay-verify="">
 									<option value="">请选择扫描仪</option>
@@ -85,12 +85,14 @@
 					</div> -->
 					<div class="layui-input-inline" id="scaner2"></div>
 				</div>
-				<br/><br/><p style="color:red">请在下面填写该文档的属性(不得超过2000字符)：</p><br/>
+				<br /><br />
+				<p style="color:red">请在下面填写该文档的属性(不得超过2000字符)：</p><br />
 				<form class="layui-form" id="data" class="layui-inline"></form>
 				</br></br>
-				
+
 				<button type="button" class="layui-btn" id="scan" onclick="scan();">开始扫描</button>
-				<br/><br/><p style="color:red">请确保您的计算机只连接了一台扫描仪。</p><br/>
+				<br /><br />
+				<p style="color:red">请确保您的计算机只连接了一台扫描仪。</p><br />
 			</div>
 		</div>
 		<script src='./src/layui/layui.js'></script>
@@ -101,36 +103,41 @@
 				// $("#data").html(formcode);
 				document.getElementById("data").innerHTML = formcode;
 
-				let dev=await eel.getScaner();//阻塞
+				let dev = await eel.getScaner();//阻塞
 				// // $("#scaner").html(dev);
 				// console.log(dev);
 				// document.getElementById("scaner2").innerHTML = dev;
-				
+
 			}
 			//JavaScript代码区域
-			layui.use(['element', 'form','layer'], function () {
+			layui.use(['element', 'form', 'layer'], function () {
 				var element = layui.element;
-				
+
 			});
 			async function scan() {
-					myresolution=$("#resolution").val();
-					mode=$("#mode").val();
-					feeder=$("#feeder").val();
-					if((myresolution=="") && (mode=="") && (feeder=="")){
-						layer.open({
-            anim: 6,
-            time: 1500,
-            content: '请填写所有信息' //这里content是一个普通的String
-          })
+				myresolution = $("#resolution").val();
+				mode = $("#mode").val();
+				feeder = $("#feeder").val();
+				value_list = [];
+				for (let i = 1; i < 16; i++) {
+					value_list.push($('#key' + i).val);
+				}
+				console.log(value_list);
+				if ((myresolution == "") && (mode == "") && (feeder == "")) {
+					layer.open({
+						anim: 6,
+						time: 1500,
+						content: '请填写所有信息' //这里content是一个普通的String
+					})
+				}
+				else {
+					if (confirm("你确定要提交吗?")) {
+						// eel.upload();
+						// alert(resolution,mode,feeder)
+						eel.scan(myresolution, mode, feeder, 0)
 					}
-					else {
-            if (confirm("你确定要提交吗?")) {
-              // eel.upload();
-							// alert(resolution,mode,feeder)
-							eel.scan(myresolution,mode,feeder,0)
-            }
-          }
-					
+				}
+
 			}
 		</script>
 

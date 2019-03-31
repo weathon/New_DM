@@ -6,114 +6,124 @@ from tkinter import filedialog
 from tkinter import *
 import old_scan
 
-devlist=[]
+devlist = []
 @eel.expose
 def getD():
-    f=open("tree.json","r")
-    json_data=f.read()
+    f = open("tree.json", "r")
+    json_data = f.read()
     f.close()
     print(json_data)
     return json_data
 
+
 @eel.expose
 def setTree(data):
     # print(data)
-    f=open("tree.json","r")
-    old_data=f.read()#For runback
+    f = open("tree.json", "r")
+    old_data = f.read()  # For runback
     f.close()
     try:
-        f=open("tree.json","w")
+        f = open("tree.json", "w")
         f.write(data)
         f.close()
         # return 0
-        returns=0
+        returns = 0
         # 5/0 Test Error
     except Exception as e:
         # return -1
         # print(repr(e))
-        returns=repr(e)
+        returns = repr(e)
         try:
             f.close()
         except:
-            f=open("tree.json","w")
-            f.write(old_data)#Run back
+            f = open("tree.json", "w")
+            f.write(old_data)  # Run back
             f.close()
     return returns
-#eyes tired 没能及时尝试，偷懒用data
+# eyes tired 没能及时尝试，偷懒用data
 @eel.expose
 def logout():
     print("logout!")
     os._exit(0)
+
 
 @eel.expose
 def upload(path):
     print("Upload"+path)
     return "ff"
 
+
 @eel.expose
 def getkey():
-    f=open("key.list","r")
-    keys=f.read()
+    f = open("key.list", "r")
+    keys = f.read()
     f.close()
     return keys
 
 # using string but not list, slow?
 
+
 @eel.expose
 def setkey(data):
     # print(data)
-    f=open("keys.list","r")
-    old_data=f.read()#For runback
+    f = open("keys.list", "r")
+    old_data = f.read()  # For runback
     f.close()
     try:
-        f=open("keys.list","w")
+        f = open("keys.list", "w")
         f.write(data)
         f.close()
         # return 0
-        returns=0
+        returns = 0
         # 5/0 Test Error
     except Exception as e:
         # return -1
         # print(repr(e))
-        returns=repr(e)
+        returns = repr(e)
         try:
             f.close()
         except:
-            f=open("keys.list","w")
-            f.write(old_data)#Run back
+            f = open("keys.list", "w")
+            f.write(old_data)  # Run back
             f.close()
     return returns
+
 
 @eel.expose
 def welcome():
     print("Welcome")
     # For sure can open two ws://
 
+
 @eel.expose
 def get_cols():
-    keys=myjson.readkeys()
+    keys = myjson.readkeys()
     return keys
+
 
 @eel.expose
 def getData(id):
-    id=database2.check_dangerous(id)
-    result=database2.runsql("select * from "+id)
+    id = database2.check_dangerous(id)
+    result = database2.runsql("select * from "+id)
     # print(result)
-    rmyjson=myjson.list2json(result)
+    rmyjson = myjson.list2json(result)
     # print(rmyjson)
     return rmyjson
 
+
 @eel.expose
-def update(table_name,value,field,ID):
+def update(table_name, value, field, ID):
     try:
-        value=database2.check_dangerous(value)
+        value = database2.check_dangerous(value)
         print(value)
-        database2.runsql('UPDATE %s set %s ="%s" WHERE ID=%i;' %(table_name,field,value,ID))
-        myreturn="0"
+        database2.runsql('UPDATE %s set %s ="%s" WHERE ID=%i;' %
+                         (table_name, field, value, ID))
+        myreturn = "0"
     except Exception as e:
-        myreturn=repr(e)
+        myreturn = repr(e)
 
     return myreturn
+
 
 @eel.expose
 def chose_folder():
@@ -122,22 +132,24 @@ def chose_folder():
     folder_selected = filedialog.askdirectory()
     return folder_selected
 
+
 @eel.expose
 def getForm():
-    keys=getkey().split()
-    result=""
-    form="""<div class="layui-input-inline"><div class="layui-form-item" pane>
+    keys = getkey().split()
+    result = ""
+    form = """<div class="layui-input-inline"><div class="layui-form-item" pane>
     <label class="layui-form-label">%s</label>
     <div class="layui-input-block">
     <input id=%s type="text" name="title" required lay-verify="required" placeholder="请输入对应值" autocomplete="off" class="layui-input">    
     </div>
     </div>
     </div>"""
-    index=1
+    index = 1
     for i in keys:
-        result+=form % (i,"key"+str(index))
-        index+=1
+        result += form % (i, "key"+str(index))
+        index += 1
     return result
+
 
 @eel.expose
 def getScaner():
@@ -157,19 +169,22 @@ def getScaner():
     #     print(1)
     #     return '<select name="scaner" lay-verify=""><option value="">请选择扫描仪</option><option value="-1" disable>未找到扫描仪，请确保驱动安装正确</option></select>'
     global devlist
-    devlist=old_scan.get_devices_function()
+    devlist = old_scan.get_devices_function()
+
 
 @eel.expose
-def scan(resolution,mode,feeder,values):
+def scan(resolution, mode, feeder, values):
     if feeder == "1":
-        #feeder
-        print((resolution,mode,feeder,values))
-        path=old_scan.feeder(resolution,mode)
+        # feeder
+        print((resolution, mode, feeder, values))
+        path = old_scan.feeder(resolution, mode)
         print(path)
     else:
-        #pad
-        path=old_scan.start(resolution,mode)
+        # pad
+        path = old_scan.start(resolution, mode)
         print(path)
 
+
 eel.init('../html')
-eel.start('index.html', options={'chromeFlags': ['--disable-http-cache','--incognito']})
+eel.start('index.html', options={'chromeFlags': [
+          '--disable-http-cache', '--incognito']})
