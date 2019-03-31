@@ -181,7 +181,7 @@ def scan(resolution, mode, feeder, values,table_name):
         print(path)
     else:
         # pad
-        path,id = old_scan.start(resolution, mode)
+        path,myid = old_scan.start(resolution, mode)
         print(path)
 
     for i in range(len(values)):
@@ -200,30 +200,31 @@ def scan(resolution, mode, feeder, values,table_name):
 
 @eel.expose
 def upload(path,values,table_name):
-    with open("usedid.txt","r") as f:
-        #这些配置文件后期要移动到数据库
-        myid=f.read()
+        with open("usedid.txt","r") as f:
+            #这些配置文件后期要移动到数据库
+            myid=f.read()
 
-    with open("usedid.txt","w") as f:
-        f.write(str(int(myid)+1))
-    # os.mkdir("./output/"+str(myid))
-    # index=0
-    # for name in os.listdir(path):
-    #     shutil.copyfile(name,"./output/"+str(myid)+"/")
-    #     index+=1
-    shutil.copytree(path,"./output/"+str(myid)+"/")#最后不加一个斜杠文件名会多一个乱码字符
-    path="./output/"+str(myid)+"/"
-    for i in range(len(values)):
-        values[i]=database2.check_dangerous(str(values[i]))
+        with open("usedid.txt","w") as f:
+            f.write(str(int(myid)+1))
+        # os.mkdir("./output/"+str(myid))
+        # index=0
+        # for name in os.listdir(path):
+        #     shutil.copyfile(name,"./output/"+str(myid)+"/")
+        #     index+=1
+        shutil.copytree(path,"./output/"+str(myid)+"/")#最后不加一个斜杠文件名会多一个乱码字符
+        path="./output/"+str(myid)+"/"
+        for i in range(len(values)):
+            values[i]=database2.check_dangerous(str(values[i]))
 
-    table_name=str(table_name)
+        table_name=str(table_name)
 
-    format_list=[table_name,path,int(myid)]
-    format_list.extend(values)#没有返回值，在原数组上面操作
-    # print(format_list)
-    database2.runsql('INSERT INTO %s \
-         (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
-        VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
+        format_list=[table_name,path,int(myid)]
+        format_list.extend(values)#没有返回值，在原数组上面操作
+        # print(format_list)
+        database2.runsql('INSERT INTO %s \
+            (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
+            VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
+
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': [
           '--disable-http-cache', '--incognito']})
