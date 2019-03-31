@@ -5,6 +5,7 @@ import myjson
 from tkinter import filedialog
 from tkinter import *
 import old_scan
+import  shutil
 
 devlist = []
 @eel.expose
@@ -47,10 +48,10 @@ def logout():
     os._exit(0)
 
 
-@eel.expose
-def upload(path):
-    print("Upload"+path)
-    return "ff"
+# @eel.expose
+# def upload(path):
+#     print("Upload"+path)
+#     return "ff"
 
 
 @eel.expose
@@ -168,8 +169,7 @@ def getScaner():
     # except:
     #     print(1)
     #     return '<select name="scaner" lay-verify=""><option value="">请选择扫描仪</option><option value="-1" disable>未找到扫描仪，请确保驱动安装正确</option></select>'
-    global devlist
-    devlist = old_scan.get_devices_function()
+    pass
 
 
 @eel.expose
@@ -184,7 +184,20 @@ def scan(resolution, mode, feeder, values):
         path = old_scan.start(resolution, mode)
         print(path)
 
+@eel.expose
+def upload(path,values):
+    with open("usedid.txt","r") as f:
+        #这些配置文件后期要移动到数据库
+        myid=f.read()
 
+    with open("usedid.txt","w") as f:
+        f.write(str(int(myid)+1))
+    # os.mkdir("./output/"+str(myid))
+    # index=0
+    # for name in os.listdir(path):
+    #     shutil.copyfile(name,"./output/"+str(myid)+"/")
+    #     index+=1
+    shutil.copytree(path,"./output/"+str(myid)+"/")#最后不加一个斜杠文件名会多一个乱码字符
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': [
           '--disable-http-cache', '--incognito']})
