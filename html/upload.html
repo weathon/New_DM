@@ -56,30 +56,30 @@
 
 
     </div>
-    <div class="layui-main">
+    <div id="main" class="layui-main">
 
       <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>多张图片导入</legend>
       </fieldset>
       <!-- <input id="myInput" type="file" style={{visibility: 'hidden'}} webkitdirectory directory multiple/> -->
       <!-- <input id="fileselector" type="file" onchange="browseResult(event);" webkitdirectory directory multiple="false" -->
-        <!-- style="display:none" /> -->
+      <!-- style="display:none" /> -->
 
-      <div class="layui-upload">
-        <button type="button" class="layui-btn" id="upload2"
-          onclick="browseResult();">选择文件夹</button>
-        <br /> <br />
-        <p style="color:red">注意：请保证您选择的目录下只有指定格式（*.png,*.jpg,*.gif）的图片，且没有子目录。</p>
-        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
 
-          <p id="TextBox">您还没有选择文件夹</p>
+      <button type="button" class="layui-btn" id="upload2" onclick="browseResult();">选择文件夹</button>
+      <br /> <br />
+      <p style="color:red">注意：请保证您选择的目录下只有指定格式（*.png,*.jpg,*.gif）的图片，且没有子目录。</p>
+      <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
 
-        </blockquote>
-        <!-- <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea> -->
-      </div>
-          <div id="data"></div>
-        <br/><br/><button class='layui-btn' onclick='myconfirm();'>确认</button>
+        <p id="TextBox">您还没有选择文件夹</p>
+
+      </blockquote>
+      <!-- <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea> -->
+      <p style="color:red">请在下面填写该文档的属性(不得超过2000字符)：</p><br />
+      <form class="layui-form" id="data" class="layui-inline"></form>
+      <br /><br /><button class='layui-btn' onclick='myconfirm();'>确认</button>
     </div>
+
 
 
 
@@ -88,28 +88,44 @@
 
     <script src='./src/layui/layui.js'></script>
     <script>
+      window.onload = async function () {
+        $ = layui.$;
+        let formcode = await eel.getForm()();
+        // $("#data").html(formcode);
+        document.getElementById("data").innerHTML = formcode;
+      }
 
-    var fileChoosen=0;
+      var fileChoosen = 0;
       //JavaScript代码区域
-      layui.use(['element'], async function () {
-           $ = layui.$;
-          element = layui.element;
-          let formcode=await eel.getForm()();
-          $("#data").html(formcode);
+      layui.use(['element', "form", 'layer'], async function () {
+        $ = layui.$;
+        element = layui.element;
         //yan jing shan guang
 
       });
       async function browseResult(e) {
         let fileselector = await eel.chose_folder()();
-        if(confirm("你确定要上传"+fileselector+"文件夹下面的所有文件吗？")){
-          fileChoosen=1;
+        if (confirm("你确定要上传" + fileselector + "文件夹下面的所有文件吗？")) {
+          fileChoosen = 1;
           $("#TextBox").html("您选择了：" + fileselector);
           $("#upload2").text("重新选择");
         }
       }
       async function myconfirm() {
-        
-      }
+        if (fileChoosen == 0) {
+          layer.open({
+            anim: 6,
+            time: 1500,
+            content: '清选择文件夹' //这里content是一个普通的String
+          });
+        }
+          else {
+            if (confirm("你确定要提交吗?")) {
+              // eel.upload();
+            }
+          }
+        }
+      
     </script>
 
 </body>

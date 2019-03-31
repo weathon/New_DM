@@ -4,6 +4,7 @@ import database2
 import myjson
 from tkinter import filedialog
 from tkinter import *
+import old_scan
 
 @eel.expose
 def getD():
@@ -124,14 +125,30 @@ def chose_folder():
 def getForm():
     keys=getkey().split()
     result=""
-    form="""<div class="layui-form-item" pane>
+    form="""<div class="layui-input-inline"><div class="layui-form-item" pane>
     <label class="layui-form-label">%s</label>
     <div class="layui-input-block">
-    <input type="text" name="title" required lay-verify="required" placeholder="请输入对应值(不超过2000个字符)" autocomplete="off" class="layui-input">    
+    <input type="text" name="title" required lay-verify="required" placeholder="请输入对应值" autocomplete="off" class="layui-input">    
+    </div>
     </div>
     </div>"""
     for i in keys:
         result+=form % i
+    return result
+
+@eel.expose
+def getScaner():
+    print("Getting scaner")
+    try:
+        mylist=old_scan.get_devices_function()
+    except:
+        mylist=[u"没有找到扫描仪"]
+    result='<select name="scaner" lay-verify=""><option value="">请选择扫描仪</option>'
+    index=0
+    for i in mylist:
+        result+='<option value="%i">%s</option>' %(index,i)
+        index+=1
+    result+="</select>"
     return result
 
 eel.init('../html')
