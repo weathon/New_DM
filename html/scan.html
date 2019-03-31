@@ -39,6 +39,7 @@
 		</div>
 
 		<div class="layui-main">
+			<br/>	<p style="color:red" id=nodemsg></p><br />
 			<br />
 			<div class="layui-form">
 				<div class="layui-inline">
@@ -97,6 +98,11 @@
 		</div>
 		<script src='./src/layui/layui.js'></script>
 		<script>
+			function getQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]); return null;
+			}
 			window.onload = async function () {
 				$ = layui.$;
 				let formcode = await eel.getForm()();
@@ -107,7 +113,7 @@
 				// // $("#scaner").html(dev);
 				// console.log(dev);
 				// document.getElementById("scaner2").innerHTML = dev;
-
+				$('#nodemsg').text("您正在向"+getQueryString("label")+"中添加文档");
 			}
 			//JavaScript代码区域
 			layui.use(['element', 'form', 'layer'], function () {
@@ -120,10 +126,10 @@
 				feeder = $("#feeder").val();
 				value_list = [];
 				for (let i = 1; i < 16; i++) {
-					value_list.push($('#key' + i).val);
+					value_list.push($('#key' + i).val());
 				}
 				console.log(value_list);
-				if ((myresolution == "") && (mode == "") && (feeder == "")) {
+				if ((myresolution == "") or (mode == "") or (feeder == "")) {
 					layer.open({
 						anim: 6,
 						time: 1500,
@@ -134,7 +140,7 @@
 					if (confirm("你确定要提交吗?")) {
 						// eel.upload();
 						// alert(resolution,mode,feeder)
-						eel.scan(myresolution, mode, feeder, 0)
+						eel.scan(myresolution, mode, feeder, value_list)
 					}
 				}
 
