@@ -6,6 +6,7 @@ from tkinter import filedialog
 from tkinter import *
 import old_scan
 
+devlist=[]
 @eel.expose
 def getD():
     f=open("tree.json","r")
@@ -128,28 +129,47 @@ def getForm():
     form="""<div class="layui-input-inline"><div class="layui-form-item" pane>
     <label class="layui-form-label">%s</label>
     <div class="layui-input-block">
-    <input type="text" name="title" required lay-verify="required" placeholder="请输入对应值" autocomplete="off" class="layui-input">    
+    <input id=%s type="text" name="title" required lay-verify="required" placeholder="请输入对应值" autocomplete="off" class="layui-input">    
     </div>
     </div>
     </div>"""
+    index=1
     for i in keys:
-        result+=form % i
+        result+=form % (i,"key"+str(index))
+        index+=1
     return result
 
 @eel.expose
 def getScaner():
-    print("Getting scaner")
-    try:
-        mylist=old_scan.get_devices_function()
-    except:
-        mylist=[u"没有找到扫描仪"]
-    result='<select name="scaner" lay-verify=""><option value="">请选择扫描仪</option>'
-    index=0
-    for i in mylist:
-        result+='<option value="%i">%s</option>' %(index,i)
-        index+=1
-    result+="</select>"
-    return result
+    # print("Getting scaner")
+    # try:
+    #     mylist=old_scan.get_devices_function()
+    #     print(0)
+    #     result='<select name="scaner" lay-verify=""><option value="">请选择扫描仪</option>'
+    #     index=0
+    #     for i in mylist:
+    #         result+='<option value="%i">%s</option>' %(index,str(i))
+    #         index+=1
+    #     result+="</select>"
+    #     print(1)
+    #     return result
+    # except:
+    #     print(1)
+    #     return '<select name="scaner" lay-verify=""><option value="">请选择扫描仪</option><option value="-1" disable>未找到扫描仪，请确保驱动安装正确</option></select>'
+    global devlist
+    devlist=old_scan.get_devices_function()
+
+@eel.expose
+def scan(resolution,mode,feeder,values):
+    if feeder == "1":
+        #feeder
+        print((resolution,mode,feeder,values))
+        path=old_scan.feeder(resolution,mode)
+        print(path)
+    else:
+        #pad
+        path=old_scan.start(resolution,mode)
+        print(path)
 
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': ['--disable-http-cache','--incognito']})

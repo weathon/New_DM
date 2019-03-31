@@ -43,7 +43,7 @@
 			<div class="layui-form">
 				<div class="layui-inline">
 					<div class="layui-input-inline">
-						<select name="resolution" lay-verify="">
+						<select name="resolution" lay-verify="" id=resolution>
 							<option value="">清选择清晰度，推荐300～400 <div style="color:red">清晰度太高会导致程序崩溃!</div>
 							</option>
 
@@ -60,20 +60,37 @@
 						</select>
 					</div>
 					<div class="layui-input-inline">
-						<select name="mode" lay-verify="">
+						<select name="mode" lay-verify="" id="mode">
 							<option value="">请选择扫描模式</option>
-							<option value="1">彩色</option>
-							<option value="0">黑白</option>
+							<option value="Color">彩色</option>
+							<option value="Gray">黑白</option>
+							<!-- <option value="Lineart">线条</option> -->
+							
+							<!-- Gray, no grey -->
 						</select>
 					</div>
-					<div class="layui-input-inline" id="scaner">
 
-					</div>
+					<div class="layui-input-inline">
+							<select name="mode" lay-verify="" id="feeder">
+								<option value="">请选择纸张来源</option>
+								<option value="1">自动托盘</option>
+								<option value="0">平板</option>
+							</select>
+						</div>
+					<!-- <div class="layui-input-inline" id="scaner">
+							<select name="scaner" lay-verify="">
+									<option value="">请选择扫描仪</option>
+									<option value="-1" disabled>正在搜索扫描仪……</option>
+								</select>
+					</div> -->
+					<div class="layui-input-inline" id="scaner2"></div>
 				</div>
 				<br/><br/><p style="color:red">请在下面填写该文档的属性(不得超过2000字符)：</p><br/>
 				<form class="layui-form" id="data" class="layui-inline"></form>
 				</br></br>
-				<button type="button" class="layui-btn" id="scan" onclick="scan;">开始扫描</button>
+				
+				<button type="button" class="layui-btn" id="scan" onclick="scan();">开始扫描</button>
+				<br/><br/><p style="color:red">请确保您的计算机只连接了一台扫描仪。</p><br/>
 			</div>
 		</div>
 		<script src='./src/layui/layui.js'></script>
@@ -84,16 +101,36 @@
 				// $("#data").html(formcode);
 				document.getElementById("data").innerHTML = formcode;
 
-				let dev=await eel.getScaner();
-				$('#scaner').html(dev);
+				let dev=await eel.getScaner();//阻塞
+				// // $("#scaner").html(dev);
+				// console.log(dev);
+				// document.getElementById("scaner2").innerHTML = dev;
+				
 			}
 			//JavaScript代码区域
-			layui.use(['element', 'form'], function () {
+			layui.use(['element', 'form','layer'], function () {
 				var element = layui.element;
-
+				
 			});
 			async function scan() {
-
+					myresolution=$("#resolution").val();
+					mode=$("#mode").val();
+					feeder=$("#feeder").val();
+					if((myresolution=="") && (mode=="") && (feeder=="")){
+						layer.open({
+            anim: 6,
+            time: 1500,
+            content: '请填写所有信息' //这里content是一个普通的String
+          })
+					}
+					else {
+            if (confirm("你确定要提交吗?")) {
+              // eel.upload();
+							// alert(resolution,mode,feeder)
+							eel.scan(myresolution,mode,feeder,0)
+            }
+          }
+					
 			}
 		</script>
 
