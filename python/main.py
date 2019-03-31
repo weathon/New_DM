@@ -174,6 +174,7 @@ def getScaner():
 
 @eel.expose
 def scan(resolution, mode, feeder, values,table_name):
+    print("scan")
     try:
         if feeder == "1":
             # feeder

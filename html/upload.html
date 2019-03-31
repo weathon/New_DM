@@ -116,11 +116,14 @@
       async function browseResult(e) {
         let fileselector = await eel.chose_folder()();
         path = fileselector;
-        if (confirm("你确定要上传" + fileselector + "文件夹下面的所有文件吗？")) {
-          fileChoosen = 1;
-          $("#TextBox").html("您选择了：" + fileselector);
-          $("#upload2").text("重新选择");
+        if(fileselector != ""){
+          if (confirm("你确定要上传" + fileselector + "文件夹下面的所有文件吗？")) {
+            fileChoosen = 1;
+            $("#TextBox").html("您选择了：" + fileselector);
+            $("#upload2").text("重新选择");
+          }
         }
+
       }
       async function myconfirm() {
         if (fileChoosen == 0) {

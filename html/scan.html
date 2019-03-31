@@ -38,7 +38,7 @@
 
 		</div>
 
-		<div class="layui-main">
+		<div class="layui-main" id="main">
 			<br />
 			<p style="color:red" id=nodemsg></p><br />
 			<br />
@@ -99,6 +99,11 @@
 		</div>
 		<script src='./src/layui/layui.js'></script>
 		<script>
+			eel.expose(PageConsole); // Expose this function to Python
+			function PageConsole(msg) {
+				$("#main").html($("#main").html()+"\n"+msg);
+			}
+
 			function getLabel() {
 				return decodeURI(window.location.search.substr(1)).split("&")[1].split("=")[1];
 			}
@@ -145,6 +150,8 @@
 						// alert(resolution,mode,feeder)
 						tabel_name = getID();
 						console.log(tabel_name);
+						$("#main").html("");
+						PageConsole("扫描可能需要一定的时间，请您耐心等待");
 						let myreturn = await eel.scan(myresolution, mode, feeder, value_list, tabel_name)();//此行导致反复弹窗
 						if (myreturn != "0") {
 							alert("发生严重错误！错误信息如下(您可以自行解决或者尝试联系客服)：\n" + myreturn);

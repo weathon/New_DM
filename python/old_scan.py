@@ -2,6 +2,7 @@ import pyinsane2
 import datetime
 import pickle
 import os
+import eel
 
 def get_devices_function():
 	pyinsane2.init()
@@ -21,7 +22,7 @@ def feeder(resolution,mode):
 		devices = pyinsane2.get_devices()
 		assert(len(devices) > 0)
 		device = devices[0]
-		print("I'm going to use the following scanner: %s" % (str(device)))
+		eel.PageConsole("I'm going to use the following scanner: %s" % (str(device)))
 
 		try:
 			pyinsane2.set_scanner_opt(device, 'resolution', [int(resolution)])
@@ -29,7 +30,7 @@ def feeder(resolution,mode):
 			# 清晰度太高可能会memory error
 			pyinsane2.set_scanner_opt(device, 'source', ['ADF', 'Feeder'])  #Comment this line will not use feeder
 		except PyinsaneException:
-			print("No document feeder found")
+			eel.PageConsole("No document feeder found")
 			# return
 
 	# Beware: Some scanners have "Lineart" or "Gray" as default mode
@@ -40,7 +41,7 @@ def feeder(resolution,mode):
 	# Beware: by default, some scanners only scan part of the area
 	# they could scan.
 		pyinsane2.maximize_scan_area(device)
-		print("Start!")
+		eel.PageConsole("Start!")
 		scan_session = device.scan(multiple=True)
 		try:
 			while True:
@@ -50,7 +51,7 @@ def feeder(resolution,mode):
 					print ("Got a page ! (current number of pages read: %d)"
 						% (len(scan_session.images)))
 		except StopIteration:
-			print("Document feeder is now empty. Got %d pages"
+			eel.PageConsole("Document feeder is now empty. Got %d pages"
 				% len(scan_session.images))
 		for idx in range(0, len(scan_session.images)):
 			image = scan_session.images[idx]
@@ -72,7 +73,7 @@ def start(resolution,mode):
 		devices = pyinsane2.get_devices()
 		assert(len(devices) > 0)
 		device = devices[0]
-		print("I'm going to use the following scanner: %s" % (str(device)))
+		eel.PageConsole("I'm going to use the following scanner: %s" % (str(device)))
 
 		pyinsane2.set_scanner_opt(device, 'resolution', [int(resolution)])
 
