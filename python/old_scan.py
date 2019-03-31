@@ -58,7 +58,7 @@ def feeder(resolution,mode):
 			image.save("./output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png")
 	finally:
 		pyinsane2.exit()
-		return "./output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png"
+		return "./output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png",myid
 
 def start(resolution,mode):
 	with open("usedid.txt") as myfile:
@@ -95,5 +95,5 @@ def start(resolution,mode):
 		image.save("./output/"+str(myid)+"/"+str(now.date())+str(0)+".png")
 	finally:
 		pyinsane2.exit()
-		return "./output/"+str(myid)+"/"+str(now.date())+str(0)+".png"
+		return "./output/"+str(myid)+"/"+str(now.date())+str(0)+".png",myid
 		#以idngyaofangzai finily 
