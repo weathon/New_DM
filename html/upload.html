@@ -138,7 +138,14 @@
           console.log(value_list);
           if (confirm("你确定要提交吗?")) {
             tabel_name=getID();
-            eel.upload(path, value_list,tabel_name);
+            let myreturn_= await eel.upload(path, value_list,tabel_name);
+            if(myreturn_ != "0")
+            {
+                alert("发生严重错误！错误信息如下(您可以自行解决或者尝试联系客服)：\n"+myreturn_)
+            }
+            else{
+              alert("上传成功！");
+            }
           }
         }
       }

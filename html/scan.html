@@ -39,7 +39,8 @@
 		</div>
 
 		<div class="layui-main">
-			<br/>	<p style="color:red" id=nodemsg></p><br />
+			<br />
+			<p style="color:red" id=nodemsg></p><br />
 			<br />
 			<div class="layui-form">
 				<div class="layui-inline">
@@ -115,7 +116,7 @@
 				// // $("#scaner").html(dev);
 				// console.log(dev);
 				// document.getElementById("scaner2").innerHTML = dev;
-				$('#nodemsg').html("您正在向<b>“"+getLabel()+"”</b>中添加文档");
+				$('#nodemsg').html("您正在向<b>“" + getLabel() + "”</b>中添加文档");
 			}
 			//JavaScript代码区域
 			layui.use(['element', 'form', 'layer'], function () {
@@ -142,8 +143,14 @@
 					if (confirm("你确定要提交吗?")) {
 						// eel.upload();
 						// alert(resolution,mode,feeder)
-						tabel_name=getID();
-						eel.scan(myresolution, mode, feeder, value_list,tabel_name)
+						tabel_name = getID();
+						let return_ = await scan(myresolution, mode, feeder, value_list, tabel_name);
+						if (return_ != "0") {
+							alert("发生严重错误！错误信息如下(您可以自行解决或者尝试联系客服)：\n" + myreturn_)
+						}
+						else {
+							alert("上传成功！");
+						}
 					}
 				}
 

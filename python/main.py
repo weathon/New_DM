@@ -174,32 +174,36 @@ def getScaner():
 
 @eel.expose
 def scan(resolution, mode, feeder, values,table_name):
-    if feeder == "1":
-        # feeder
-        print((resolution, mode, feeder, values))
-        path,myid = old_scan.feeder(resolution, mode)#id会不会重叠？
-        print(path)
-    else:
-        # pad
-        path,myid = old_scan.start(resolution, mode)
-        print(path)
+    try:
+        if feeder == "1":
+            # feeder
+            print((resolution, mode, feeder, values))
+            path,myid = old_scan.feeder(resolution, mode)#id会不会重叠？
+            print(path)
+        else:
+            # pad
+            path,myid = old_scan.start(resolution, mode)
+            print(path)
 
-    for i in range(len(values)):
-        values[i]=database2.check_dangerous(str(values[i]))
+        for i in range(len(values)):
+            values[i]=database2.check_dangerous(str(values[i]))
 
-    table_name=str(table_name)
+        table_name=str(table_name)
 
-    format_list=[table_name,path,int(myid)]
-    format_list.extend(values)#没有返回值，在原数组上面操作
-    # print(format_list)
-    database2.runsql('INSERT INTO %s \
-         (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
-        VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
-
+        format_list=[table_name,path,int(myid)]
+        format_list.extend(values)#没有返回值，在原数组上面操作
+        # print(format_list)
+        database2.runsql('INSERT INTO %s \
+            (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
+            VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
+            return "0"
+    except Exception as e:
+        return str(repr(e))
 
 
 @eel.expose
 def upload(path,values,table_name):
+    try:
         with open("usedid.txt","r") as f:
             #这些配置文件后期要移动到数据库
             myid=f.read()
@@ -224,7 +228,10 @@ def upload(path,values,table_name):
         database2.runsql('INSERT INTO %s \
             (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
             VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
-
+        return "0"
+    except Exception as e:
+        return str(repr(e))
+        
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': [
           '--disable-http-cache', '--incognito']})
