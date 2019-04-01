@@ -104,8 +104,8 @@ def get_cols():
 
 @eel.expose
 def getData(id):
-    id = database2.check_dangerous(id)
-    result = database2.runsql("select * from "+id)
+    id = database2.check_dangerous(str(id))
+    result = database2.runsql("select * from '"+id+"'")
     # print(result)
     rmyjson = myjson.list2json(result)
     # print(rmyjson)
@@ -204,7 +204,7 @@ def scan(resolution, mode, feeder, values,table_name):
 
 @eel.expose
 def upload(path,values,table_name):
-    try:
+    # try:
         with open("usedid.txt","r") as f:
             #这些配置文件后期要移动到数据库
             myid=f.read()
@@ -226,13 +226,44 @@ def upload(path,values,table_name):
         format_list=[table_name,path,int(myid)]
         format_list.extend(values)#没有返回值，在原数组上面操作
         # print(format_list)
-        database2.runsql('INSERT INTO %s \
+        database2.runsql('INSERT INTO "%s" \
             (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
             VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
         return "0"
-    except Exception as e:
-        return str(repr(e))
+    # except Exception as e:
+    #     return str(repr(e))
         
+#刚才搞烦了
+@eel.expose
+def creatTable(id):
+    id=database2.check_dangerous(str(id))
+    database2.runsql('''CREATE TABLE "%s" (
+ PATH nvarchar(4000),
+ ID int,
+ key1 nvarchar(4000),
+ key2 nvarchar(4000),
+ key3 nvarchar(4000),
+ key4 nvarchar(4000),
+ key5 nvarchar(4000),
+ key6 nvarchar(4000),
+ key7 nvarchar(4000),
+ key8 nvarchar(4000),
+ key9 nvarchar(4000),
+ key10 nvarchar(4000),
+ key11 nvarchar(4000),
+ key12 nvarchar(4000),
+ key13 nvarchar(4000),
+ key14 nvarchar(4000),
+ key15 nvarchar(4000)
+ )''' % id)
+
+#啊啊啊啊，kong zhi bu zhu zi ji, yan jing hen gan, hai shi....
+@eel.expose
+def dropTable(id):
+    id=database2.check_dangerous(str(id))
+    database2.runsql("DROP TABLE "+id)
+
+    
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': [
           '--disable-http-cache', '--incognito']})
