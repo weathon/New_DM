@@ -67,11 +67,11 @@ def getkey():
 @eel.expose
 def setkey(data):
     # print(data)
-    f = open("keys.list", "r")
+    f = open("key.list", "r")
     old_data = f.read()  # For runback
     f.close()
     try:
-        f = open("keys.list", "w")
+        f = open("key.list", "w")
         f.write(data)
         f.close()
         # return 0
@@ -84,7 +84,7 @@ def setkey(data):
         try:
             f.close()
         except:
-            f = open("keys.list", "w")
+            f = open("key.list", "w")
             f.write(old_data)  # Run back
             f.close()
     return returns
@@ -174,7 +174,7 @@ def getScaner():
 
 @eel.expose
 def scan(resolution, mode, feeder, values,table_name):
-    print("scan")
+    eel.PageConsole(u"扫描程序正在启动……")
     try:
         if feeder == "1":
             # feeder

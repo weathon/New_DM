@@ -1179,7 +1179,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 // 删除
                 $("#tree-menu li.remove").off().on("click",function(e) {
                     //细思极恐，删除了节点数据库怎么按？弄了半天js，难受！
-                    if(confirm("你确定要删除该节点及其所有子节点吗？\n注意:目前由于BUG，删除该节点后内容依然会存留在数据库中，这个bug目前还在紧急修复。")){
+                    if(confirm("你确定要删除该节点及其所有子节点吗？")){//\n注意:目前由于BUG，删除该节点后内容依然会存留在数据库中，这个bug目前还在紧急修复。
                         var node=$(that).parent(".eleTree-node");
                         var key=node.attr("data-"+options.request.key);
                         key=isNaN(key) ? key : Number(key);
