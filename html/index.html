@@ -92,7 +92,7 @@
       <table id="tb" lay-filter="main_table"></table>
       <div id="toolbar">
         <br /><br /><br /><br /><br /><br />
-         <h1 class="ce">欢迎使用Weathon文档管理系统</h1>
+        <h1 class="ce">欢迎使用Weathon文档管理系统</h1>
       </div>
       <!--you huan cun, xiu gai buliao-->
       <!--左手中指一直到手臂一条筋疼-->
@@ -186,13 +186,69 @@
           });
         })
 
-        console.log("-");
-        //顺序事件？要放在外面use sync is fine  Still not working
-        eleTree.on("nodeInsertAfter(data1)", async function (d) {
-          console.log("ADD");
-          console.log(d.newData);
-          tree_commit();
+
+        eleTree.on("nodeAppend(data1)", function (d) {
+          console.log(d.newData); // 新增加的节点数据
+          eel.creatTable(d.newData.id);
+          setTimeout(tree_commit, 1000);
         })
+
+        // 添加节点之前事件
+        eleTree.on("nodeInsertBefore(data1)", function (d) {
+          console.log(d.newData); // 新增加的节点数据
+          eel.creatTable(d.newData.id);
+          setTimeout(tree_commit, 1000);
+        })
+
+        // 添加节点之后事件
+        eleTree.on("nodeInsertAfter(data1)", function (d) {
+          console.log(d.newData); // 新增加的节点数据
+          eel.creatTable(d.newData.id);
+          setTimeout(tree_commit, 1000);
+        })
+
+
+        // 节点被编辑事件
+        eleTree.on("nodeEdit(data1)", function (d) {
+          setTimeout(tree_commit, 1000);
+        })
+
+        eleTree.on("nodeDrag(data1)", function (d) {
+          setTimeout(tree_commit, 1000);
+        })
+        // 节点被删除事件
+        eleTree.on("nodeRemove(data1)", function (d) {
+          // dd = d;
+          // console.log(d.data)
+          if (d.data.children) {
+            if (d.data.children.length > 0) {
+              alert("当前节点有字节点，故无法删除！");
+              d.stop();
+              return;
+            }
+          }
+          //注意此处双重逻辑
+          if (prompt("为确保您的数据安全，请输入这个节点的标签名") == d.data.label) {
+            eel.dropTable(d.data.id);
+            setTimeout(tree_commit, 1000);
+          }
+          else {
+            alert("验证失败！无法删除");
+            d.stop();
+
+
+          }
+
+
+        })
+
+        // console.log("-");
+        // //顺序事件？要放在外面use sync is fine  Still not working
+        // eleTree.on("nodeInsertAfter(data1)", async function (d) {
+        //   console.log("ADD");
+        //   console.log(d.newData);
+        //   tree_commit();
+        // })
 
 
         table.on('edit(main_table)', async function (obj) {
@@ -203,6 +259,12 @@
         });
 
       })
+
+
+
+
+
+
 
     </script>
 
