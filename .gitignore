@@ -1,7 +1,10 @@
-*.db
-*.pyc
-python/database2_mssql.py
-python/fakeData.py
-python/output/*.png
-.db
+**/*.db
+**/*.pyc
+**/python/database2_mssql.py
+**/python/fakeData.py
+**/*.png
+*.png
+*.jpeg
+**/*.jpg!d
+*.jpg
 python/spec
