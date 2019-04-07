@@ -105,7 +105,7 @@ def get_cols():
 @eel.expose
 def getData(id):
     id = database2.check_dangerous(str(id))
-    result = database2.runsql("select * from \"+id+'"')
+    result = database2.runsql("select * from \""+id+'"')
     # print(result)
     rmyjson = myjson.list2json(result)
     # print(rmyjson)
