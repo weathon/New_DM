@@ -261,7 +261,7 @@ def creatTable(id):
 @eel.expose
 def dropTable(id):
     id=database2.check_dangerous(str(id))
-    database2.runsql("DROP TABLE "+id)
+    database2.runsql("DROP TABLE \""+id+'"')
 
     
 eel.init('../html')
