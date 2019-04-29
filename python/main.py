@@ -194,7 +194,7 @@ def scan(resolution, mode, feeder, values,table_name):
         format_list=[table_name,path,int(myid)]
         format_list.extend(values)#没有返回值，在原数组上面操作
         # print(format_list)
-        database2.runsql('INSERT INTO “%s” \
+        database2.runsql('INSERT INTO "%s" \
             (PATH,ID,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15) \
             VALUES ("%s", %i ,"%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' % tuple(format_list) )
         return "0"

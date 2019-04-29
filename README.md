@@ -22,3 +22,13 @@ My task list and plan will be sent to *Project*.
 ~嘘～！千万不要告诉产品经理我把项目公开了!~
 
 ~(Just kiding)~
+
+感谢以下开原库：
+https://github.com/hsiangleev/layuiExtend (MIT)
+https://github.com/sentsin/layui (MIT)
+https://github.com/pymssql/pymssql (LGPL)
+https://gitlab.gnome.org/World/OpenPaperwork/pyinsane (GPL)
+https://github.com/python/cpython
+https://github.com/ChrisKnott/Eel (MIT)
+
+如有遗漏我们深表迁移，并请发送邮件到wguo6358@gmail.com说明情况，我们会尽快补上
