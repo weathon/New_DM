@@ -16,6 +16,7 @@ Now this project is not done. If you have some idea or you want to help us (me),
 My task list and plan will be sent to *Project*.
 
 
+If you are using Windows, you need download  https://visualstudio.microsoft.com/downloads/
 > My QQ: 2907154449
 > My Email: tcs06358@163.com
 
