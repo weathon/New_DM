@@ -13,7 +13,7 @@ My task list and plan will be sent to *Project*.
 ## My contact information 
     My QQ: 2907154449
 
-    My Email: tcs06358@163.com
+    My Email: wguo6358@gmail.com
 
 ## Thanks to the following open source library:
 
