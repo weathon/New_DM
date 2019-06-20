@@ -16,12 +16,22 @@ My task list and plan will be sent to *Project*.
     My Email: tcs06358@163.com
 
 ## Thanks to the following open source library:
+
+EEl Copyright (c) 2019 李祥 
 https://github.com/hsiangleev/layuiExtend (MIT) 
+
+Layui Copyright (c) 2017 layui 
 https://github.com/sentsin/layui (MIT) 
+
 https://github.com/pymssql/pymssql (LGPL) (The latest version is no longer use this)
+
 https://gitlab.gnome.org/World/OpenPaperwork/pyinsane (GPL) 
+
 https://github.com/python/cpython 
+
+Copyright (c) 2018 Chris Knott 
 https://github.com/ChrisKnott/Eel (MIT) 
+
 https://github.com/robertlugg/easygui (Modified BSD License)
 
 
