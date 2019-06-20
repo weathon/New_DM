@@ -1,4 +1,4 @@
-# import pyinsane2
+import pyinsane2
 import datetime
 import pickle
 import os
