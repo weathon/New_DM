@@ -259,11 +259,11 @@ def creatTable(id):
  key15 nvarchar(4000)
  )''' % id)
 
-#啊啊啊啊，kong zhi bu zhu zi ji, yan jing hen gan, hai shi....
 @eel.expose
 def dropTable(id):
     id=database2.check_dangerous(str(id))
-    database2.runsql("DROP TABLE \""+id+'"')
+    database2.runsql("DROP TABLE \""+str(id)+'"')
+    shutil.rmtree('./output/'+str(id))
 
     
 eel.init('../html')
