@@ -1,4 +1,4 @@
-import pyinsane2
+# import pyinsane2
 import datetime
 import pickle
 import os
@@ -98,5 +98,6 @@ def start(resolution,mode):
 		pyinsane2.exit()
 		return "./output/"+str(myid)+"/"+str(now.date())+str(0)+".png",myid
 		#以idngyaofangzai finily 
+
 if __name__=="__main__":
     feeder(300,"color")
