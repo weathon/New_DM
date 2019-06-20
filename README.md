@@ -21,6 +21,8 @@ https://github.com/sentsin/layui (MIT)
 https://github.com/pymssql/pymssql (LGPL) (The latest version is no longer use this)
 https://gitlab.gnome.org/World/OpenPaperwork/pyinsane (GPL) 
 https://github.com/python/cpython 
-https://github.com/ChrisKnott/Eel (MIT)
+https://github.com/ChrisKnott/Eel (MIT) 
+https://github.com/robertlugg/easygui (Modified BSD License)
+
 
 We apologize if there is any omission, you can send an email to wguo6358@gmail.com to let us know.

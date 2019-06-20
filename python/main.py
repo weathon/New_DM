@@ -2,8 +2,9 @@
 import os
 import database2
 import myjson
-from tkinter import filedialog
-from tkinter import *
+# from tkinter import filedialog
+# from tkinter import *
+import easygui
 import old_scan
 import  shutil
 
@@ -128,9 +129,10 @@ def update(table_name, value, field, ID):
 
 @eel.expose
 def chose_folder():
-    root = Tk()
-    root.withdraw()
-    folder_selected = filedialog.askdirectory()
+    # root = Tk()
+    # root.withdraw()
+    # folder_selected = filedialog.askdirectory()
+    folder_selected = easygui.diropenbox()
     return folder_selected
 
 
