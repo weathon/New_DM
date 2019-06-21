@@ -287,6 +287,6 @@ def delete(file_id,table_ID):
     database2.runsql(mysql)
     shutil.rmtree(r'./output/'+file_id)#+"/"
 
-eel.init('../html')
+eel.init('./html')
 eel.start('index.html', options={'chromeFlags': [
           '--disable-http-cache', '--incognito']})
