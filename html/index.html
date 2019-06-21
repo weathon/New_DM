@@ -231,6 +231,8 @@
           if (prompt("为确保您的数据安全，请输入这个节点的标签名") == d.data.label) {
             eel.dropTable(d.data.id);
             setTimeout(tree_commit, 1000);
+            console.log(d.data.id);
+            // d.stop()
           }
           else {
             alert("验证失败！无法删除");

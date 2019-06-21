@@ -2,9 +2,9 @@
 import os
 import database2
 import myjson
-# from tkinter import filedialog
-# from tkinter import *
-import easygui
+from tkinter import filedialog
+from tkinter import Tk
+# import easygui
 import old_scan
 import  shutil
 
@@ -129,10 +129,12 @@ def update(table_name, value, field, ID):
 
 @eel.expose
 def choose_folder():
-    # root = Tk()
-    # root.withdraw()
-    # folder_selected = filedialog.askdirectory()
-    folder_selected = easygui.diropenbox()
+    root = Tk()
+    root.withdraw()
+    root.wm_attributes('-topmost', 1)
+    # root.lift()
+    folder_selected = filedialog.askdirectory()
+    # folder_selected = easygui.diropenbox()
     return folder_selected
     # bu hui zui qian tan chu, jian rong xing wen ti
 
@@ -263,10 +265,12 @@ def creatTable(id):
 @eel.expose
 def dropTable(id):
     id=database2.check_dangerous(str(id))
+    print(id)
     # shutil.rmtree('./output/'+str(id))#Un-test
     folder_list=database2.runsql('SELECT * from "%s"' %id)
     for i in folder_list:
-        shutil.rmtree('./output/'+str(i))#Un-test
+        shutil.rmtree(r'./output/'+str(i[1]))#+"/"
+        # os.rmdir(r'output/'+str(i[1])+r"/")#./ or nothing?
     database2.runsql("DROP TABLE \""+str(id)+'"')#order
     
 

@@ -32,7 +32,8 @@ https://github.com/python/cpython
 Copyright (c) 2018 Chris Knott 
 https://github.com/ChrisKnott/Eel (MIT) 
 
-https://github.com/robertlugg/easygui (Modified BSD License)
+https://github.com/robertlugg/easygui (Modified BSD License) 
+(The latest version is no longer use this)
 
 
 We apologize if there is any omission, you can send an email to wguo6358@gmail.com to let us know.

@@ -1101,7 +1101,7 @@ layui.define(["jquery","laytpl"], function (exports) {
                 // 添加的默认数据
                 var obj={};
                 obj[options.request.key]=Date.now();//_self.addKeyIndex;
-                obj[options.request.name]="Untitled"+_self.nameIndex;
+                obj[options.request.name]="Untitled "+_self.nameIndex;
 
                 var arr=["Append","InsertBefore","InsertAfter"];
                 arr.forEach(function(val) {
