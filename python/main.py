@@ -134,6 +134,7 @@ def choose_folder():
     # folder_selected = filedialog.askdirectory()
     folder_selected = easygui.diropenbox()
     return folder_selected
+    # bu hui zui qian tan chu, jian rong xing wen ti
 
 
 @eel.expose
