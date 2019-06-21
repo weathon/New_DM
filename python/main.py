@@ -263,11 +263,11 @@ def creatTable(id):
 @eel.expose
 def dropTable(id):
     id=database2.check_dangerous(str(id))
-    database2.runsql("DROP TABLE \""+str(id)+'"')
     # shutil.rmtree('./output/'+str(id))#Un-test
     folder_list=database2.runsql('SELECT * from "%s"' %id)
     for i in folder_list:
         shutil.rmtree('./output/'+str(i))#Un-test
+    database2.runsql("DROP TABLE \""+str(id)+'"')#order
     
 
 @eel.expose

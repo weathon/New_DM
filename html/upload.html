@@ -10,7 +10,8 @@
 </head>
 
 
-<body class="layui-layout-body">
+<body>
+  <!--  class="layui-layout-body" Cancle this to show scoll-->
   <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
       <div class="layui-logo">Weathon文档管理系统</div>
@@ -80,7 +81,9 @@
       <p style="color:red">请在下面填写该文档的属性(不得超过2000字符)：</p><br />
       <!-- 有点心慌，感觉项目永远做不玩，想做，但是有很累 -->
       <form class="layui-form" id="data" class="layui-inline"></form>
+      <!-- <div id="data" style="position:absolute; height:400px; overflow:auto"></div> -->
       <br /><br /><button class='layui-btn' onclick='myconfirm();'>确认</button>
+    </div>
     </div>
 
 
