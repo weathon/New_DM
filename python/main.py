@@ -264,22 +264,28 @@ def creatTable(id):
 
 @eel.expose
 def dropTable(id):
-    id=database2.check_dangerous(str(id))
-    print(id)
-    # shutil.rmtree('./output/'+str(id))#Un-test
-    folder_list=database2.runsql('SELECT * from "%s"' %id)
-    for i in folder_list:
-        shutil.rmtree(r'./output/'+str(i[1]))#+"/"
-        # os.rmdir(r'output/'+str(i[1])+r"/")#./ or nothing?
-    database2.runsql("DROP TABLE \""+str(id)+'"')#order
+    try:
+        id=database2.check_dangerous(str(id))
+        print(id)
+        # shutil.rmtree('./output/'+str(id))#Un-test
+        folder_list=database2.runsql('SELECT * from "%s"' %id)
+        for i in folder_list:
+            shutil.rmtree(r'./output/'+str(i[1]))#+"/"
+            # os.rmdir(r'output/'+str(i[1])+r"/")#./ or nothing?
+        database2.runsql("DROP TABLE \""+str(id)+'"')#order
+        myreturn="0"
+    except Exception as e:
+        myreturn=repr(e)
+    return myreturn
     
 
 @eel.expose
-def delete_file(file_id):
-    #Remove from database
-    #Delete folder
-    pass
-
+def delete(file_id,table_ID):
+    file_id=database2.check_dangerous(str(file_id))
+    # DELETE FROM 表名称 WHERE 列名称 = 值
+    mysql='DELETE FROM "%s" WHERE "ID" = "%s"' %(table_ID,file_id)
+    database2.runsql(mysql)
+    shutil.rmtree(r'./output/'+file_id)#+"/"
 
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': [
