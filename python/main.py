@@ -11,8 +11,8 @@ import  shutil
 devlist = []
 @eel.expose
 def getD():
-    f = open("tree.json", "r")
-    json_data = f.read()
+    f = open("tree.json", "rb")
+    json_data = f.read().decode("utf-8")
     f.close()
     print(json_data)
     return json_data
@@ -128,7 +128,7 @@ def update(table_name, value, field, ID):
 
 
 @eel.expose
-def chose_folder():
+def choose_folder():
     # root = Tk()
     # root.withdraw()
     # folder_selected = filedialog.askdirectory()
@@ -263,9 +263,19 @@ def creatTable(id):
 def dropTable(id):
     id=database2.check_dangerous(str(id))
     database2.runsql("DROP TABLE \""+str(id)+'"')
-    shutil.rmtree('./output/'+str(id))
-
+    # shutil.rmtree('./output/'+str(id))#Un-test
+    folder_list=database2.runsql('SELECT * from "%s"' %id)
+    for i in folder_list:
+        shutil.rmtree('./output/'+str(i))#Un-test
     
+
+@eel.expose
+def delete_file(file_id):
+    #Remove from database
+    #Delete folder
+    pass
+
+
 eel.init('../html')
 eel.start('index.html', options={'chromeFlags': [
           '--disable-http-cache', '--incognito']})

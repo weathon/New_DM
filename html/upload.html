@@ -113,8 +113,8 @@
         //yan jing shan guang
 
       });
-      async function browseResult(e) {
-        let fileselector = await eel.chose_folder()();
+      async function browseResult(e) {//e
+        let fileselector = await eel.choose_folder()();
         path = fileselector;
         if(fileselector != ""){
           if (confirm("你确定要上传" + fileselector + "文件夹下面的所有文件吗？")) {
