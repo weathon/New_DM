@@ -18,9 +18,9 @@ My task list and plan will be sent to *Project*.
 ## Open Source Licenses
 **Thanks to the following open source library:**
 
-### EEl 
-EEl Copyright (c) 2019 李祥 
-https://github.com/hsiangleev/layuiExtend 
+### EEl  
+EEl Copyright (c) 2019 李祥  
+https://github.com/hsiangleev/layuiExtend  
 MIT  
 
 ### Layui 
