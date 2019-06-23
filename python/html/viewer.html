@@ -13,34 +13,21 @@
         var True = true;
         var Ture = true;
     </script>
-    <style>
-        .ce {
-            text-align: center;
-            /*让div内部文字居中*/
-            border-radius: 20px;
-            width: 600px;
-            height: 350px;
-            margin: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            color: grey
-        }
-    </style>
     <style type="text/css">
         /* https://blog.csdn.net/u014175572/article/details/51535768 */
         
-        div img {
+        .list {
             cursor: pointer;
             transition: all 0.2s;
+            border-style: solid;
+            border-width: 5px;
         }
         
-        div img:hover {
+        .list:hover {
             transform: scale(1.08);
         }
     </style>
+
 </head>
 
 
@@ -72,8 +59,8 @@
 
         </div>
 
-        <div class="layui-body" id="main" style="text-align:center">
-
+        <div class="layui-body" style="text-align:center">
+            <img id="main"></img>
         </div>
 
         <script src='./src/layui/layui.js'></script>
@@ -86,12 +73,18 @@
             layui.use('element', async function() {
                 var element = layui.element;
                 mylisthtml = await eel.getPicturelist(getID())();
-                console.log(mylisthtml);
+                // console.log(mylisthtml);
                 document.getElementById("list").innerHTML = mylisthtml;
+                details(0);
             });
+
+            function details(id) {
+                document.getElementById("main").src = document.getElementById("img-" + id).src
+            }
         </script>
 
 
 </body>
+
 
 </html>

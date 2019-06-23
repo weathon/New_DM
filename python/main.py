@@ -292,12 +292,14 @@ def delete(file_id,table_ID):
 def getPicturelist(folder_id):
     print(folder_id)
     mylist=os.listdir(r'./output/'+folder_id)
-    myhtml="""<br/><img style="border-style:solid;border-width:5px;" src="data:image;base64, %s" width=80%%></img><br/>"""
+    myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="data:image;base64, %s" width=80%%></img><br/>"""
     result=""
+    myid=0
     for i in mylist:
         with open("".join(("./output/",folder_id,"/",i)),"rb") as f:
-            result+=myhtml % str(base64.b64encode(f.read()),"utf-8")
+            result+=myhtml % (myid,myid,str(base64.b64encode(f.read()),"utf-8"))
             # "".join((result,myhtml % base64.b64encode(f.read())))
+        myid+=1
     return result
 
 
