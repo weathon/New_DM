@@ -270,10 +270,11 @@ def dropTable(id):
         print(id)
         # shutil.rmtree('./html/output/'+str(id))#Un-test
         folder_list=database2.runsql('SELECT * from "%s"' %id)
+        database2.runsql("DROP TABLE \""+str(id)+'"')#order
         for i in folder_list:
             shutil.rmtree(r'./html/output/'+str(i[1]))#+"/"
             # os.rmdir(r'./html/output/'+str(i[1])+r"/")#./ or nothing?
-        database2.runsql("DROP TABLE \""+str(id)+'"')#order
+        
         myreturn="0"
     except Exception as e:
         myreturn=repr(e)
