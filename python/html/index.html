@@ -3,60 +3,60 @@
 <!-- VUG:https://github.com/hsiangleev/layuiExtend/issues/23-->
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Weathon文档管理系统 | 文档查看</title>
-  <link rel="stylesheet" href="./src/layui/css/layui.css">
-  <link rel="stylesheet" href="eleTree.css" media="all">
-  <script type="text/javascript" src="/eel.js"></script>
-  <script>
-    var True = true;
-    var Ture = true;
-  </script>
-  <style>
-    .ce {
-      text-align: center;
-      /*让div内部文字居中*/
-      border-radius: 20px;
-      width: 600px;
-      height: 350px;
-      margin: auto;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      color: grey
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Weathon文档管理系统 | 文档查看</title>
+    <link rel="stylesheet" href="./src/layui/css/layui.css">
+    <link rel="stylesheet" href="eleTree.css" media="all">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script>
+        var True = true;
+        var Ture = true;
+    </script>
+    <style>
+        .ce {
+            text-align: center;
+            /*让div内部文字居中*/
+            border-radius: 20px;
+            width: 600px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: grey
+        }
+    </style>
 </head>
 
 <!-- 眼睛非常累，很难受,有点不想做 xiang mu , wu PC -->
 
 
 <body class="layui-layout-body">
-  <div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-      <div class="layui-logo">Weathon文档管理系统</div>
-      <!-- 头部区域（可配合l ayui已有的水平导航） -->
-      <ul class="layui-nav layui-layout-left">
-        <li class="layui-nav-item"><a href="./index.html">文档管理</a></li>
-        <li class="layui-nav-item"><a href="./setting.html">设置</a></li>
-        <li class="layui-nav-item"><a href="./search.html">文档查找</a></li>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">Weathon文档管理系统</div>
+            <!-- 头部区域（可配合l ayui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="./index.html">文档管理</a></li>
+                <li class="layui-nav-item"><a href="./setting.html">设置</a></li>
+                <li class="layui-nav-item"><a href="./search.html">文档查找</a></li>
 
 
-        <!-- Menu -->
-        <li class="layui-nav-item">
-          <!-- <a href="javascript:;">导入</a>
+                <!-- Menu -->
+                <li class="layui-nav-item">
+                    <!-- <a href="javascript:;">导入</a>
           <dl class="layui-nav-child">
             <dd><a href="scan.html">从扫描仪</a></dd>
             <dd><a href="upload.html">从文件</a></dd>
           </dl> -->
-        </li>
+                </li>
 
-        <!-- Menu End -->
-        <li class="layui-nav-item">
-          <!--
+                <!-- Menu End -->
+                <li class="layui-nav-item">
+                    <!--
             <a href="javascript:;">其它系统</a>
             <dl class="layui-nav-child">
               <dd><a href="">邮件管理</a></dd>
@@ -64,240 +64,245 @@
               <dd><a href="">授权管理</a></dd>
             </dl>
 -->
-        </li>
-      </ul>
-      <ul class="layui-nav layui-layout-right">
-        <li class="layui-nav-item">
-          <a href="javascript:;">
-            <img src="cat.png" class="layui-nav-img">
-            管理员
-          </a>
-          <dl class="layui-nav-child">
-            <dd><a href="./setting.html">设置</a></dd>
-            <dd><a href="./logout.html">退出系统</a></dd>
-          </dl>
-        </li>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="cat.png" class="layui-nav-img"> 管理员
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="./setting.html">设置</a></dd>
+                        <dd><a href="./logout.html">退出系统</a></dd>
+                    </dl>
+                </li>
 
 
-    </div>
-    <div class="layui-side layui-bg-black">
-      <div class="eleTree ele1" lay-filter="data1"></div>
-      <br /><br />
-      <div>点击<div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改<br />(不包括添加或删除节点)</div>
-    </div>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="eleTree ele1" lay-filter="data1"></div>
+            <br /><br />
+            <div>点击
+                <div class="layui-btn layui-btn-xs" onclick="tree_commit();">此处</div>提交更改<br />(不包括添加或删除节点)</div>
+        </div>
 
-    <div class="layui-body" id="main">
-      <!-- 内容主体区域 -->
+        <div class="layui-body" id="main">
+            <!-- 内容主体区域 -->
 
-      <table id="tb" lay-filter="main_table"></table>
-      <div id="toolbar">
-        <br /><br /><br /><br /><br /><br />
-        <h1 class="ce">欢迎使用Weathon文档管理系统</h1>
-      </div>
-      <!--you huan cun, xiu gai buliao-->
-      <!--左手中指一直到手臂一条筋疼-->
-    </div>
+            <table id="tb" lay-filter="main_table"></table>
+            <div id="toolbar">
+                <br /><br /><br /><br /><br /><br />
+                <h1 class="ce">欢迎使用Weathon文档管理系统</h1>
+            </div>
+            <!--you huan cun, xiu gai buliao-->
+            <!--左手中指一直到手臂一条筋疼-->
+        </div>
 
-    <!--yan la, xiu gai shu ban ge xiao shi, hen gan-->
-    <script src='./src/layui/layui.js'></script>
-    <script>
-      async function tree_commit() {
-        var ret = await eel.setTree(JSON.stringify(tree1.datas().data))();
-        if (ret == 0) {
-          console.log("修改成功！")
-        }
-        else {
-          alert("修改失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
-        }
-      }
-
-    </script>
-    <script type="text/html" id="tableBar">
-  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
-    <script>
-
-      // 原文：https://blog.csdn.net/tjcyjd/article/details/44275531 
-
-      function add_docs() {
-        tree_commit();
-        layer.open({
-          content: '清选择导入方式'
-          , btn: ['扫描仪', '文件']
-          , yes: function (index, layero) {
-            window.location.href = encodeURI("scan.html?id=" + nownode.id + "&label=" + nownode.label);
-            //按钮【按钮一】的回调
-          }
-          , btn2: function (index, layero) {
-            window.location.href = encodeURI("upload.html?id=" + nownode.id + "&label=" + nownode.label);
-          }
-        });
-      }
-
-      var mytable_name = ""
-
-      layui.config({
-        base: "./src/layui/lay/mymodules/"
-      }).use(['jquery', 'table', 'eleTree', 'code', 'element'], async function () {
-        var $ = layui.jquery;
-        var eleTree = layui.eleTree;
-        var table = layui.table;
-        var code = layui.code;
-        var returns = await eel.getD()();
-        var data = JSON.parse(returns);
-
-
-        var ele1 = eleTree.render({
-          elem: '.ele1',
-          data: data,
-          // checkOnClickNode:true,
-          contextmenuList: ["copy", "add", "edit", "remove"],
-          draggable: true,
-
-          // expandOnClickNode: false,
-        });
-        tree1 = ele1;
-        var mycols = await eel.get_cols()();
-        my_fin_cols = [[]];
-        console.log(mycols);
-        my_fin_cols[0].push({ filed: "ID", hide: True, title: "ID" });
-        for (var s = 1; s <= 15; s++) {//s++ or ++s
-          my_fin_cols[0].push({ "field": "key" + String(s), "title": mycols[s - 1], "sort": True, "edit": True });
-        }
-        my_fin_cols[0].push({ unresize: True, width: 128, fixed: 'right', align: 'center', toolbar: '#tableBar' })
-        // my_fin_cols[0][0].hide=True;
-
-        console.log(my_fin_cols);
-        eleTree.on("nodeClick(data1)", async function (d) {
-          nownode = d.data.currentData;
-          console.log("id:" + d.data.currentData.id); //id
-          mytable_name = String(d.data.currentData.id);
-          var table = layui.table;
-          var mydata = await eel.getData(d.data.currentData.id)();
-          console.log(mydata);
-          //执行渲染
-          $("#toolbar").html('&nbsp;&nbsp;<div class="layui-btn" onclick="add_docs();">添加文档</div>');
-          table.render({
-            elem: '#tb',
-            cols: my_fin_cols,//设置表头
-            data: mydata,
-            page: true
-          });
-        })
-
-
-        eleTree.on("nodeAppend(data1)", function (d) {
-          console.log(d.newData); // 新增加的节点数据
-          eel.creatTable(d.newData.id);
-          setTimeout(tree_commit, 1000);
-        })
-
-        // 添加节点之前事件
-        eleTree.on("nodeInsertBefore(data1)", function (d) {
-          console.log(d.newData); // 新增加的节点数据
-          eel.creatTable(d.newData.id);
-          setTimeout(tree_commit, 1000);
-        })
-
-        // 添加节点之后事件
-        eleTree.on("nodeInsertAfter(data1)", function (d) {
-          console.log(d.newData); // 新增加的节点数据
-          eel.creatTable(d.newData.id);
-          setTimeout(tree_commit, 1000);
-        })
-
-
-        // 节点被编辑事件
-        eleTree.on("nodeEdit(data1)", function (d) {
-          setTimeout(tree_commit, 1000);
-        })
-
-        eleTree.on("nodeDrag(data1)", function (d) {
-          setTimeout(tree_commit, 1000);
-        })
-        // 节点被删除事件
-        eleTree.on("nodeRemove(data1)", async function (d) {
-          // dd = d;
-          // console.log(d.data)
-          if (d.data.children) {
-            if (d.data.children.length > 0) {
-              alert("当前节点有字节点，故无法删除！");
-              d.stop();
-              return;
+        <!--yan la, xiu gai shu ban ge xiao shi, hen gan-->
+        <script src='./src/layui/layui.js'></script>
+        <script>
+            async function tree_commit() {
+                var ret = await eel.setTree(JSON.stringify(tree1.datas().data))();
+                if (ret == 0) {
+                    console.log("修改成功！")
+                } else {
+                    alert("修改失败！请刷新后重试或记录下以下信息联系支持部门。\n" + ret)
+                }
             }
-          }
-          //注意此处双重逻辑
-          if (prompt("为确保您的数据安全，请输入这个节点的标签名") == d.data.label) {
-            rr=await eel.dropTable(d.data.id)();
-            if(rr=="0")
-            {
-                alert("删除成功！");
+        </script>
+        <script type="text/html" id="tableBar">
+            <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" lay-event="export">导出PDF</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+        <script>
+            // 原文：https://blog.csdn.net/tjcyjd/article/details/44275531 
+
+            function add_docs() {
+                tree_commit();
+                layer.open({
+                    content: '清选择导入方式',
+                    btn: ['扫描仪', '文件'],
+                    yes: function(index, layero) {
+                        window.location.href = encodeURI("scan.html?id=" + nownode.id + "&label=" + nownode.label);
+                        //按钮【按钮一】的回调
+                    },
+                    btn2: function(index, layero) {
+                        window.location.href = encodeURI("upload.html?id=" + nownode.id + "&label=" + nownode.label);
+                    }
+                });
             }
-            else{
-              alert("删除失败，错误信息如下：\n"+rr)
-            }
-            setTimeout(tree_commit, 1000);
-            console.log(d.data.id);
-            // d.stop()
-          }
-          else {
-            alert("验证失败！无法删除");
-            d.stop();
+
+            var mytable_name = ""
+
+            layui.config({
+                base: "./src/layui/lay/mymodules/"
+            }).use(['jquery', 'table', 'eleTree', 'code', 'element'], async function() {
+                var $ = layui.jquery;
+                var eleTree = layui.eleTree;
+                var table = layui.table;
+                var code = layui.code;
+                var returns = await eel.getD()();
+                var data = JSON.parse(returns);
 
 
-          }
+                var ele1 = eleTree.render({
+                    elem: '.ele1',
+                    data: data,
+                    // checkOnClickNode:true,
+                    contextmenuList: ["copy", "add", "edit", "remove"],
+                    draggable: true,
+
+                    // expandOnClickNode: false,
+                });
+                tree1 = ele1;
+                var mycols = await eel.get_cols()();
+                my_fin_cols = [
+                    []
+                ];
+                console.log(mycols);
+                my_fin_cols[0].push({
+                    filed: "ID",
+                    hide: True,
+                    title: "ID"
+                });
+                for (var s = 1; s <= 15; s++) { //s++ or ++s
+                    my_fin_cols[0].push({
+                        "field": "key" + String(s),
+                        "title": mycols[s - 1],
+                        "sort": True,
+                        "edit": True
+                    });
+                }
+                my_fin_cols[0].push({
+                        unresize: True,
+                        width: 128,
+                        fixed: 'right',
+                        align: 'center',
+                        toolbar: '#tableBar'
+                    })
+                    // my_fin_cols[0][0].hide=True;
+
+                console.log(my_fin_cols);
+                eleTree.on("nodeClick(data1)", async function(d) {
+                    nownode = d.data.currentData;
+                    console.log("id:" + d.data.currentData.id); //id
+                    mytable_name = String(d.data.currentData.id);
+                    var table = layui.table;
+                    var mydata = await eel.getData(d.data.currentData.id)();
+                    console.log(mydata);
+                    //执行渲染
+                    $("#toolbar").html('&nbsp;&nbsp;<div class="layui-btn" onclick="add_docs();">添加文档</div>');
+                    table.render({
+                        elem: '#tb',
+                        cols: my_fin_cols, //设置表头
+                        data: mydata,
+                        page: true
+                    });
+                })
 
 
-        })
+                eleTree.on("nodeAppend(data1)", function(d) {
+                    console.log(d.newData); // 新增加的节点数据
+                    eel.creatTable(d.newData.id);
+                    setTimeout(tree_commit, 1000);
+                })
 
-        // console.log("-");
-        // //顺序事件？要放在外面use sync is fine  Still not working
-        // eleTree.on("nodeInsertAfter(data1)", async function (d) {
-        //   console.log("ADD");
-        //   console.log(d.newData);
-        //   tree_commit();
-        // })
+                // 添加节点之前事件
+                eleTree.on("nodeInsertBefore(data1)", function(d) {
+                    console.log(d.newData); // 新增加的节点数据
+                    eel.creatTable(d.newData.id);
+                    setTimeout(tree_commit, 1000);
+                })
 
-
-        table.on('edit(main_table)', async function (obj) {
-          let returnMessage = await eel.update(mytable_name, obj.value, obj.field, obj.data.ID)()
-          if (returnMessage != "0") {
-            alert("修改失败！请刷新后重试或记录下以下信息联系支持部门。\n" + returnMessage)
-          }
-        });
-
-          //监听工具条
-      table.on('tool(main_table)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-        var data = obj.data; //获得当前行数据
-        var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-        var tr = obj.tr; //获得当前行 tr 的DOM对象
-
-        if (layEvent === 'detail') { //查看
-          alert(".");
-        } else if (layEvent === 'del') { //删除
-          layer.confirm('真的删除行么', function (index) {
-            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-            console.log(data);
-            layer.close(index);
-            //向服务端发送删除指令
-            eel.delete(data.ID,nownode.id)
-            // 注意大小写
-          });
-        
-        }
-      });
+                // 添加节点之后事件
+                eleTree.on("nodeInsertAfter(data1)", function(d) {
+                    console.log(d.newData); // 新增加的节点数据
+                    eel.creatTable(d.newData.id);
+                    setTimeout(tree_commit, 1000);
+                })
 
 
-      })
+                // 节点被编辑事件
+                eleTree.on("nodeEdit(data1)", function(d) {
+                    setTimeout(tree_commit, 1000);
+                })
+
+                eleTree.on("nodeDrag(data1)", function(d) {
+                        setTimeout(tree_commit, 1000);
+                    })
+                    // 节点被删除事件
+                eleTree.on("nodeRemove(data1)", async function(d) {
+                    // dd = d;
+                    // console.log(d.data)
+                    if (d.data.children) {
+                        if (d.data.children.length > 0) {
+                            alert("当前节点有字节点，故无法删除！");
+                            d.stop();
+                            return;
+                        }
+                    }
+                    //注意此处双重逻辑
+                    if (prompt("为确保您的数据安全，请输入这个节点的标签名") == d.data.label) {
+                        rr = await eel.dropTable(d.data.id)();
+                        if (rr == "0") {
+                            alert("删除成功！");
+                        } else {
+                            alert("删除失败，错误信息如下：\n" + rr)
+                        }
+                        setTimeout(tree_commit, 1000);
+                        console.log(d.data.id);
+                        // d.stop()
+                    } else {
+                        alert("验证失败！无法删除");
+                        d.stop();
 
 
+                    }
 
 
+                })
+
+                // console.log("-");
+                // //顺序事件？要放在外面use sync is fine  Still not working
+                // eleTree.on("nodeInsertAfter(data1)", async function (d) {
+                //   console.log("ADD");
+                //   console.log(d.newData);
+                //   tree_commit();
+                // })
 
 
+                table.on('edit(main_table)', async function(obj) {
+                    let returnMessage = await eel.update(mytable_name, obj.value, obj.field, obj.data.ID)()
+                    if (returnMessage != "0") {
+                        alert("修改失败！请刷新后重试或记录下以下信息联系支持部门。\n" + returnMessage)
+                    }
+                });
 
-    </script>
+                //监听工具条
+                table.on('tool(main_table)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+                    var data = obj.data; //获得当前行数据
+                    var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                    var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+                    if (layEvent === 'detail') { //查看
+                        alert(".");
+                    } else if (layEvent === 'del') { //删除
+                        layer.confirm('真的删除行么', function(index) {
+                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                            console.log(data);
+                            layer.close(index);
+                            //向服务端发送删除指令
+                            eel.delete(data.ID, nownode.id)
+                                // 注意大小写
+                        });
+
+                    }
+                });
+
+
+            })
+        </script>
 
 </body>
 
