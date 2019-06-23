@@ -7,6 +7,7 @@ from tkinter import Tk
 # import easygui
 import old_scan
 import  shutil
+import base64
 
 devlist = []
 @eel.expose
@@ -286,6 +287,19 @@ def delete(file_id,table_ID):
     mysql='DELETE FROM "%s" WHERE "ID" = "%s"' %(table_ID,file_id)
     database2.runsql(mysql)
     shutil.rmtree(r'./output/'+file_id)#+"/"
+
+@eel.expose
+def getPicturelist(folder_id):
+    print(folder_id)
+    mylist=os.listdir(r'./output/'+folder_id)
+    myhtml="""<br/><img src="data:image;base64, %s" width=80%%></img><br/>"""
+    result=""
+    for i in mylist:
+        with open("".join(("./output/",folder_id,"/",i)),"rb") as f:
+            result+=myhtml % str(base64.b64encode(f.read()),"utf-8")
+            # "".join((result,myhtml % base64.b64encode(f.read())))
+    return result
+
 
 eel.init('./html')
 eel.start('index.html', options={'chromeFlags': [

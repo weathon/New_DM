@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<!-- VUG:https://github.com/hsiangleev/layuiExtend/issues/23-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Weathon文档管理系统 | 文档内页浏览</title>
+    <link rel="stylesheet" href="./src/layui/css/layui.css">
+    <link rel="stylesheet" href="eleTree.css" media="all">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script>
+        var True = true;
+        var Ture = true;
+    </script>
+    <style>
+        .ce {
+            text-align: center;
+            /*让div内部文字居中*/
+            border-radius: 20px;
+            width: 600px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: grey
+        }
+    </style>
+</head>
+
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">文档内页浏览</div>
+            <!-- 头部区域（可配合l ayui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="./index.html">文档管理</a></li>
+                <li class="layui-nav-item"><a href="./setting.html">设置</a></li>
+                <li class="layui-nav-item"><a href="./search.html">文档查找</a></li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="cat.png" class="layui-nav-img"> 管理员
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="./setting.html">设置</a></dd>
+                        <dd><a href="./logout.html">退出系统</a></dd>
+                    </dl>
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="layui-side layui-bg-black" style="text-align:center" id="list">
+
+        </div>
+
+        <div class="layui-body" id="main" style="text-align:center">
+
+        </div>
+
+        <script src='./src/layui/layui.js'></script>
+        <script>
+            function getID() { //Table Name
+                return decodeURI(window.location.search.substr(1).split("&")[0].split("=")[1]);
+            }
+
+            //JavaScript代码区域
+            layui.use('element', async function() {
+                var element = layui.element;
+                mylisthtml = await eel.getPicturelist(getID())();
+                console.log(mylisthtml);
+                document.getElementById("list").innerHTML = mylisthtml;
+            });
+        </script>
+
+
+</body>
+
+</html>

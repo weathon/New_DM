@@ -50,7 +50,12 @@ https://github.com/robertlugg/easygui
 Modified BSD License  
 (The latest version is no longer use this) 
  
+### Tui.image-editor 
+Copyright (c) 2019 NHN Corp. 
+https://github.com/nhn/tui.image-editor/ 
+MIT 
 
 
 We apologize if there is any omission, you can send an email to wguo6358@gmail.com to let us know.
 And also, if you find that there are others who are using New_DM but are not following the icense agreement, please send us an E-mail.
+**Some code snippets are copied from forums, blog or documents and are not indicated here. But some of them is in the code.**
