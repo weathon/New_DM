@@ -217,13 +217,13 @@ def upload(path,values,table_name):
 
         with open("usedid.txt","w") as f:
             f.write(str(int(myid)+1))
-        # os.mkdir("./output/"+str(myid))
+        # os.mkdir("./html/output/"+str(myid))
         # index=0
         # for name in os.listdir(path):
-        #     shutil.copyfile(name,"./output/"+str(myid)+"/")
+        #     shutil.copyfile(name,"./html/output/"+str(myid)+"/")
         #     index+=1
-        shutil.copytree(path,"./output/"+str(myid)+"/")#最后不加一个斜杠文件名会多一个乱码字符
-        path="./output/"+str(myid)+"/"
+        shutil.copytree(path,"./html/output/"+str(myid)+"/")#最后不加一个斜杠文件名会多一个乱码字符
+        path="./html/output/"+str(myid)+"/"
         for i in range(len(values)):
             values[i]=database2.check_dangerous(str(values[i]))
 
@@ -268,11 +268,11 @@ def dropTable(id):
     try:
         id=database2.check_dangerous(str(id))
         print(id)
-        # shutil.rmtree('./output/'+str(id))#Un-test
+        # shutil.rmtree('./html/output/'+str(id))#Un-test
         folder_list=database2.runsql('SELECT * from "%s"' %id)
         for i in folder_list:
-            shutil.rmtree(r'./output/'+str(i[1]))#+"/"
-            # os.rmdir(r'output/'+str(i[1])+r"/")#./ or nothing?
+            shutil.rmtree(r'./html/output/'+str(i[1]))#+"/"
+            # os.rmdir(r'./html/output/'+str(i[1])+r"/")#./ or nothing?
         database2.runsql("DROP TABLE \""+str(id)+'"')#order
         myreturn="0"
     except Exception as e:
@@ -286,22 +286,32 @@ def delete(file_id,table_ID):
     # DELETE FROM 表名称 WHERE 列名称 = 值
     mysql='DELETE FROM "%s" WHERE "ID" = "%s"' %(table_ID,file_id)
     database2.runsql(mysql)
-    shutil.rmtree(r'./output/'+file_id)#+"/"
+    shutil.rmtree(r'./html/output/'+file_id)#+"/"
 
 @eel.expose
 def getPicturelist(folder_id):
+    #直接获取路径？
+    # print(folder_id)
+    # mylist=os.listdir(r'./html/output/'+folder_id)
+    # myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="data:image;base64, %s" width=80%%></img><br/>"""
+    # result=""
+    # myid=0
+    # for i in mylist:
+    #     with open("".join(("./html/output/",folder_id,"/",i)),"rb") as f:
+    #         result+=myhtml % (myid,myid,str(base64.b64encode(f.read()),"utf-8"))
+    #         # "".join((result,myhtml % base64.b64encode(f.read())))
+    #     myid+=1
+    # return result
     print(folder_id)
-    mylist=os.listdir(r'./output/'+folder_id)
-    myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="data:image;base64, %s" width=80%%></img><br/>"""
+    mylist=os.listdir(r'./html/output/'+folder_id)
+    myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="output/%s/%s" width=80%%></img><br/>"""
     result=""
     myid=0
     for i in mylist:
-        with open("".join(("./output/",folder_id,"/",i)),"rb") as f:
-            result+=myhtml % (myid,myid,str(base64.b64encode(f.read()),"utf-8"))
-            # "".join((result,myhtml % base64.b64encode(f.read())))
+        result+=myhtml % (myid,myid,folder_id,i)
+
         myid+=1
     return result
-
 
 eel.init('./html')
 eel.start('index.html', options={'chromeFlags': [
