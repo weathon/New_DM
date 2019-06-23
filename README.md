@@ -18,10 +18,10 @@ My task list and plan will be sent to *Project*.
 ## Open Source Licenses
 **Thanks to the following open source library:**
 
-### EEl 
-EEl Copyright (c) 2019 李祥 
-https://github.com/hsiangleev/layuiExtend 
-MIT 
+### EEl  
+EEl Copyright (c) 2019 李祥   
+https://github.com/hsiangleev/layuiExtend  
+MIT  
 
 ### Layui 
 Layui Copyright (c) 2017 layui   
@@ -45,10 +45,13 @@ Copyright (c) 2018 Chris Knott
 https://github.com/ChrisKnott/Eel  
 MIT 
 
-### Easygui 
-https://github.com/robertlugg/easygui 
-Modified BSD License 
+### Easygui  
+https://github.com/robertlugg/easygui  
+Modified BSD License  
 (The latest version is no longer use this) 
 
+ 
+  
+   
 
 We apologize if there is any omission, you can send an email to wguo6358@gmail.com to let us know.
