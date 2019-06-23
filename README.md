@@ -9,6 +9,7 @@ This is a document manger.(Not be done yet) You can scan your documents on paper
 Now this project is not done. If you have some idea or you want to help us (me), you can submit an Issues or fork this repo..
 My task list and plan will be sent to *Project*.
 
+#Note: This project carries out XOR simple encryption on the picture. If the encryption requirements are high, please modify it yourself!
 
 ## My contact information 
     My QQ: 2907154449

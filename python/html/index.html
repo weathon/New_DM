@@ -92,6 +92,7 @@
 
         </div>
         <div class="layui-side layui-bg-black">
+            <input type="text" placeholder="请输入关键字进行搜索" autocomplete="off" class="layui-input eleTree-search">
             <div class="eleTree ele1" lay-filter="data1"></div>
             <br /><br />
             <div>点击
@@ -164,9 +165,16 @@
                     // checkOnClickNode:true,
                     contextmenuList: ["copy", "add", "edit", "remove"],
                     draggable: true,
+                    searchNodeMethod: function(value, data) {
+                        if (!value) return true;
+                        return data.label.indexOf(value) !== -1;
+                    }
 
                     // expandOnClickNode: false,
                 });
+                $(".eleTree-search").on("change", function() {
+                    ele1.search($(this).val());
+                })
                 tree1 = ele1;
                 var mycols = await eel.get_cols()();
                 my_fin_cols = [
@@ -213,6 +221,7 @@
                         // minWidth: 100
                     });
                 })
+
 
 
                 eleTree.on("nodeAppend(data1)", function(d) {

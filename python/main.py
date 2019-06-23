@@ -1,4 +1,4 @@
-﻿import eel
+﻿import myeel as eel
 import os
 import database2
 import myjson
@@ -291,29 +291,36 @@ def delete(file_id,table_ID):
 
 @eel.expose
 def getPicturelist(folder_id):
-    #直接获取路径？
-    # print(folder_id)
-    # mylist=os.listdir(r'./html/output/'+folder_id)
-    # myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="data:image;base64, %s" width=80%%></img><br/>"""
-    # result=""
-    # myid=0
-    # for i in mylist:
-    #     with open("".join(("./html/output/",folder_id,"/",i)),"rb") as f:
-    #         result+=myhtml % (myid,myid,str(base64.b64encode(f.read()),"utf-8"))
-    #         # "".join((result,myhtml % base64.b64encode(f.read())))
-    #     myid+=1
-    # return result
+    #直接获取路径？不行，还要加密
+    #懒加载？？？？？？？？
+    #base储存？
+    #对方说加密要求不严，根据https://blog.csdn.net/kenera/article/details/6034255，我使用XOR算了～～～
     print(folder_id)
     mylist=os.listdir(r'./html/output/'+folder_id)
-    myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="output/%s/%s" width=80%%></img><br/>"""
+    myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="data:image;base64, %s" width=80%%></img><br/>"""
     result=""
     myid=0
     for i in mylist:
-        result+=myhtml % (myid,myid,folder_id,i)
-
+        with open("".join(("./html/output/",folder_id,"/",i)),"rb") as f:
+            # result+=myhtml % (myid,myid,f.read())
+            result+=myhtml % (myid,myid,str(base64.b64encode(f.read()),"utf-8"))
+            # "".join((result,myhtml % base64.b64encode(f.read())))
         myid+=1
     return result
+    # print(folder_id)
+    # mylist=os.listdir(r'./html/output/'+folder_id)
+    # #虚拟URL
+    # myhtml="""<br/><img onclick="details(%s)" class="list" id="img-%s" src="output/%s/%s" width=80%%></img><br/>"""
+    # result=""
+    # myid=0
+    # for i in mylist:
+    #     result+=myhtml % (myid,myid,folder_id,i)
+    #     myid+=1
+    # return result
+
+@eel.expose
+def deleteFile(folder,filename):
+    pass
 
 eel.init('./html')
-eel.start('index.html', options={'chromeFlags': [
-          '--disable-http-cache', '--incognito']})
+eel.start('index.html', mode='chrome-app', port=8080,chromeFlags=['--disable-http-cache', '--incognito'])
