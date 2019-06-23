@@ -2,5 +2,6 @@
 **/*.pyc
 **/python/database2_mssql.py
 **/python/fakeData.py
+python/html/output/**
 python/spec
 

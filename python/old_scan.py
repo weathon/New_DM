@@ -55,11 +55,11 @@ def feeder(resolution,mode):
 				% len(scan_session.images))
 		for idx in range(0, len(scan_session.images)):
 			image = scan_session.images[idx]
-			os.mkdir("./output/"+str(myid))
-			image.save("./output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png")
+			os.mkdir("./html/output/"+str(myid))
+			image.save("./html/output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png")
 	finally:
 		pyinsane2.exit()
-		return "./output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png",myid
+		return "./html/output/"+str(myid)+"/"+str(now.date())+"-"+str(idx)+".png",myid
 
 def start(resolution,mode):
 	with open("usedid.txt") as myfile:
@@ -92,11 +92,11 @@ def start(resolution,mode):
 		except EOFError:
 			pass
 		image = scan_session.images[-1]
-		os.mkdir("./output/"+str(myid))
-		image.save("./output/"+str(myid)+"/"+str(now.date())+str(0)+".png")
+		os.mkdir("./html/output/"+str(myid))
+		image.save("./html/output/"+str(myid)+"/"+str(now.date())+str(0)+".png")
 	finally:
 		pyinsane2.exit()
-		return "./output/"+str(myid)+"/"+str(now.date())+str(0)+".png",myid
+		return "./html/output/"+str(myid)+"/"+str(now.date())+str(0)+".png",myid
 		#以idngyaofangzai finily 
 
 if __name__=="__main__":
