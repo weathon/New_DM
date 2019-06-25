@@ -1,4 +1,4 @@
-# Weathon Documents Manger
+# Weathon Documents Manager
 
 ## Screenshot
 <img src="https://www.weathon.top/New_DM/screenshot.png"/>
