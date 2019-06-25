@@ -291,6 +291,7 @@ def delete(file_id,table_ID):
 
 @eel.expose
 def getPicturelist(folder_id):
+    #Liu zai jia jia shang WEBWOKER chong ding xiang?
     #直接获取路径？不行，还要加密
     #懒加载？？？？？？？？
     #base储存？
