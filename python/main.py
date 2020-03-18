@@ -1,6 +1,6 @@
 ﻿import myeel as eel
 import os
-import database2
+import database_sqlite
 import myjson
 from tkinter import filedialog
 from tkinter import Tk
@@ -8,7 +8,7 @@ from tkinter import Tk
 import old_scan
 import  shutil
 import base64
-
+database2=database_sqlite#new
 devlist = []
 @eel.expose
 def getD():
